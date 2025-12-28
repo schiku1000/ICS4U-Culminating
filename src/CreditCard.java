@@ -14,4 +14,10 @@ public class CreditCard extends Card {
     public void setLimit(long lngLimit) {
 	this.lngLimit = lngLimit;
     }
+    
+    // toString() method
+    @Override 
+    public String toString() { 
+        return super.toString() + lngLimit + "\n";
+    }
 }

@@ -39,5 +39,8 @@ public abstract class Card {
     }
    
     // toString() method
-    
+    @Override 
+    public String toString() { 
+        return strName + "\n" + strBank + "\n" + lngNumber + "\n" + strExpiry + "\n" + srtCVV + "\n";
+    }
 }

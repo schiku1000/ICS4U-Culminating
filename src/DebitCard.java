@@ -14,4 +14,10 @@ public class DebitCard extends Card {
     public void setLimit(long lngLimit) {
 	this.lngBalance = lngBalance;
     }
+    
+    // toString() method
+    @Override 
+    public String toString() { 
+        return super.toString() + lngBalance + "\n";
+    }
 }
