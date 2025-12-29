@@ -1,3 +1,5 @@
+import java.io.*; // Required for reading and writting to the file 
+
 public class EditCard extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CardsManager.class.getName());
@@ -332,7 +334,38 @@ public class EditCard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
+        // Use the boolean we saved earlier to know whether to delete from credit card or debit card list 
+	if (boolCredit) {
+	    // Since the list is static, we can directly access it using the class name 
+	    CardsManager.listCreditCards.remove(bytCard);
+	 
+	    // Now that it is removed from the list, rewrite the file without it 
+	    try {
+		// Clear the file, then write to it: 
+		FileWriter fwCred = new FileWriter("Credit Cards.txt");
+		for (int i = 0; i < CardsManager.listCreditCards.size(); i++) {
+		    fwCred.write(CardsManager.listCreditCards.get(i).toString());
+		}
+		
+		fwCred.close(); // close the writter to prevent data loss and memory leaks
+		
+	    } catch (IOException e) {}
+	} else {
+	    // Since the list is static, we can directly access it using the class name 
+	    CardsManager.listDebitCards.remove(bytCard);
+	 
+	    // Now that it is removed from the list, rewrite the file without it 
+	    try {
+		// Clear the file, then write to it: 
+		FileWriter fwDeb = new FileWriter("Debit Cards.txt");
+		for (int i = 0; i < CardsManager.listDebitCards.size(); i++) {
+		    fwDeb.write(CardsManager.listDebitCards.get(i).toString());
+		}
+		
+		fwDeb.close(); // close the writter to prevent data loss and memory leaks
+		
+	    } catch (IOException e) {}
+	}
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     public static void main(String args[]) {
