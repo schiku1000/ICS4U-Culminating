@@ -1,7 +1,6 @@
 // here are the classes we will be importing for the application 
 import java.io.*; // for file reading and writing 
 import java.util.*; // mostly for arrayList 
-import java.text.DecimalFormat; // for rounding 
 
 public class CardsManager extends javax.swing.JFrame {   
     
@@ -328,14 +327,31 @@ public class CardsManager extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddCardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCardActionPerformed
-        this.dispose(); // Dispose the current screen (The Cards Manager) 
-	
-	// Create a new object the screen (JFrame class) we are going to display 
-	AddCard screen = new AddCard(); 
-	screen.setVisible(true); // Make the screen visible
+        // Clear the textspace of errors 
+	lblDisplayError.setText(""); 
+
+	// If there are NOT 3 credit, and 3 debit cards, you are allowed to add a card. 
+	// This is just because of the limit we added for the application. 
+	if (listCreditCards.size() + listDebitCards.size() < 6) {
+	    this.dispose(); // Dispose the current screen (The Cards Manager) 
+
+	    // Create a new object the screen (JFrame class) we are going to display 
+	    AddCard screen = new AddCard(); 
+	    screen.setVisible(true); // Make the screen visible
+	} else {
+	    lblDisplayError.setText("Cannot add card: You have already reached the maximum amount!"); 
+	}
     }//GEN-LAST:event_btnAddCardActionPerformed
 
     private void btnCredit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCredit1ActionPerformed
+	// First, remove the current screen
+	this.dispose(); 
+	
+	// Now, create an object of the screen we are going to show 
+	EditCard screen = new EditCard(); 
+	
+	// Set the text/details on the card on this screen by using the object we had just created
+	
     }//GEN-LAST:event_btnCredit1ActionPerformed
 
     public static void main(String args[]) {
