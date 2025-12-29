@@ -5,7 +5,15 @@ public class EditCard extends javax.swing.JFrame {
     public EditCard() {
 	initComponents();
     }
-
+    
+    // This boolean will hold whether the card currently being edited is a credit card or a debit card. 
+    // If it is true, it is a credit card, and if it's false, it is a debit card 
+    boolean boolCredit;
+    
+    // This byte character will hold which card it is 
+    // E.g. Credit Card #2 would have 2 saved here. 
+    byte bytCard; 
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -119,7 +127,6 @@ public class EditCard extends javax.swing.JFrame {
         lblDisplayOut.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         lblDisplayOut.setForeground(new java.awt.Color(153, 102, 0));
         lblDisplayOut.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblDisplayOut.setText("* Changes Saved!");
 
         lblDetailHeader.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 24)); // NOI18N
         lblDetailHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -316,7 +323,12 @@ public class EditCard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
+        // When the back button is clicked, go back to the main screen (Cards Manager) 
+	this.dispose(); // dispose the current screen
+	
+	// Create a new object for the class
+	CardsManager screen = new CardsManager(); 
+	screen.setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed

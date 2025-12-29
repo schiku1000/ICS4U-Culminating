@@ -81,7 +81,7 @@ public class CardsManager extends javax.swing.JFrame {
                 listDebitCards.add(new DebitCard(strTemp[0], strTemp[1], strTemp[2], strTemp[3], Short.parseShort(strTemp[4]), df.format(dblBalance)));
 	    }
         
-        } catch (Exception e) {System.out.println(e.getMessage());}
+        } catch (IOException | NumberFormatException e) {}
 	
 	// SECOND PART: Add all of these values to the GUI using buttons 
 	// Do this using switch statement to know which cards to enable 
@@ -384,6 +384,8 @@ public class CardsManager extends javax.swing.JFrame {
 	screen.txtCVV.setText(String.valueOf(listCreditCards.get(0).getCVV())); 
 	screen.txtBalance.setText("$" + String.valueOf(listCreditCards.get(0).getLimit())); 
 	screen.txtCardType.setText("Credit Card");
+	screen.boolCredit = true; 
+	screen.bytCard = 0; 
 	
 	// go to the next screen
 	screen.setVisible(true);
@@ -404,6 +406,8 @@ public class CardsManager extends javax.swing.JFrame {
 	screen.txtCVV.setText(String.valueOf(listCreditCards.get(1).getCVV())); 
 	screen.txtBalance.setText("$" + String.valueOf(listCreditCards.get(1).getLimit())); 
 	screen.txtCardType.setText("Credit Card");
+	screen.boolCredit = true; 
+	screen.bytCard = 1; 
 	
 	// go to the next screen
 	screen.setVisible(true);
@@ -424,6 +428,8 @@ public class CardsManager extends javax.swing.JFrame {
 	screen.txtCVV.setText(String.valueOf(listCreditCards.get(2).getCVV())); 
 	screen.txtBalance.setText("$" + String.valueOf(listCreditCards.get(2).getLimit())); 
 	screen.txtCardType.setText("Credit Card");
+	screen.boolCredit = true; 
+	screen.bytCard = 2; 
 	
 	// go to the next screen
 	screen.setVisible(true);
@@ -444,6 +450,8 @@ public class CardsManager extends javax.swing.JFrame {
 	screen.txtCVV.setText(String.valueOf(listDebitCards.get(0).getCVV())); 
 	screen.txtBalance.setText("$" + String.valueOf(listDebitCards.get(0).getBalance())); 
 	screen.txtCardType.setText("Credit Card");
+	screen.boolCredit = false; 
+	screen.bytCard = 0; 
 	
 	// go to the next screen
 	screen.setVisible(true);
@@ -464,6 +472,8 @@ public class CardsManager extends javax.swing.JFrame {
 	screen.txtCVV.setText(String.valueOf(listDebitCards.get(1).getCVV())); 
 	screen.txtBalance.setText("$" + String.valueOf(listDebitCards.get(1).getBalance())); 
 	screen.txtCardType.setText("Credit Card");
+	screen.boolCredit = false; 
+	screen.bytCard = 1; 
 	
 	// go to the next screen
 	screen.setVisible(true);
@@ -484,6 +494,8 @@ public class CardsManager extends javax.swing.JFrame {
 	screen.txtCVV.setText(String.valueOf(listDebitCards.get(2).getCVV())); 
 	screen.txtBalance.setText("$" + String.valueOf(listDebitCards.get(2).getBalance())); 
 	screen.txtCardType.setText("Credit Card");
+	screen.boolCredit = false; 
+	screen.bytCard = 2; 
 	
 	// go to the next screen
 	screen.setVisible(true);
