@@ -4,7 +4,7 @@ public abstract class Card {
     // Instance variables 
     private String strName;
     private String strBank; 
-    private String lngNumber; 
+    private String strNumber; 
     private String strExpiry; 
     private short srtCVV; 
 
@@ -12,7 +12,7 @@ public abstract class Card {
     public Card(String strName, String strBank, String strNumber, String strExpiry, short srtCVV) {
 	this.strName = strName;
 	this.strBank = strBank;
-	this.lngNumber = lngNumber;
+	this.strNumber = strNumber;
 	this.strExpiry = strExpiry;
 	this.srtCVV = srtCVV;
     }
@@ -26,8 +26,8 @@ public abstract class Card {
 	return strBank;
     }
 
-    public long getNumber() {
-	return lngNumber;
+    public String getNumber() {
+	return strNumber;
     }
 
     public String getExpiry() {
@@ -41,6 +41,6 @@ public abstract class Card {
     // toString() method
     @Override 
     public String toString() { 
-        return strName + "\n" + strBank + "\n" + lngNumber + "\n" + strExpiry + "\n" + srtCVV + "\n";
+        return strName + "\n" + strBank + "\n" + strNumber + "\n" + strExpiry + "\n" + srtCVV + "\n";
     }
 }
