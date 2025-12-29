@@ -78,6 +78,64 @@ public class CardsManager extends javax.swing.JFrame {
         } catch (Exception e) {}
 	
 	// SECOND PART: Add all of these values to the GUI using buttons 
+	// Do this using switch statement to know which cards to enable 
+	switch(listCreditCards.size()) {
+	    case 0:
+		break; // Do nothing; nothing is enabled 
+	    case 1: 
+		btnCredit1.setEnabled(true);
+		btnCredit1.setText("View/Edit Credit Card #1");
+		
+		break; 
+	    case 2: 
+		btnCredit1.setEnabled(true);
+		btnCredit1.setText("View/Edit Credit Card #1");
+		
+		btnCredit2.setEnabled(true);
+		btnCredit2.setText("View/Edit Credit Card #2");
+		
+		break; 
+	    case 3: 
+		btnCredit1.setEnabled(true);
+		btnCredit1.setText("View/Edit Credit Card #1");
+		
+		btnCredit2.setEnabled(true);
+		btnCredit2.setText("View/Edit Credit Card #2");
+		
+		btnCredit3.setEnabled(true);
+		btnCredit3.setText("View/Edit Credit Card #3");
+		
+		break; 
+	}
+	
+	switch(listDebitCards.size()) {
+	    case 0:
+		break; // Do nothing; nothing is enabled 
+	    case 1: 
+		btnDebit1.setEnabled(true);
+		btnDebit1.setText("View/Edit Debit Card #1");
+		
+		break; 
+	    case 2: 
+		btnDebit1.setEnabled(true);
+		btnDebit1.setText("View/Edit Debit Card #1");
+		
+		btnDebit2.setEnabled(true);
+		btnDebit2.setText("View/Edit Debit Card #2");
+		
+		break; 
+	    case 3: 
+		btnDebit1.setEnabled(true);
+		btnDebit1.setText("View/Edit Debit Card #1");
+		
+		btnDebit2.setEnabled(true);
+		btnDebit2.setText("View/Edit Debit Card #2");
+		
+		btnDebit3.setEnabled(true);
+		btnDebit3.setText("View/Edit Debit Card #3");
+		
+		break; 
+	}
 	
     }
     
@@ -86,19 +144,40 @@ public class CardsManager extends javax.swing.JFrame {
         // The reason why this is here and not in the addCards() function is because of efficiency. 
         // This only has to run once per program, whereas the addCards() function will be run multiple times. 
 	try {
-	    FileWriter fwCred = new FileWriter("Credit Cards.txt");
-            FileWriter fwDeb = new FileWriter("Debit Cards.txt"); 
+	    BufferedReader br1 = new BufferedReader(new FileReader("Credit Cards.txt")); 
+	    BufferedReader br2 = new BufferedReader(new FileReader("Credit Cards.txt")); 
+	    
+	    // Check to see if the files are empty/null, if they aren't don't change them. 
+	    if (br1.readLine() == null) { 
+		FileWriter fwCred = new FileWriter("Credit Cards.txt");
+		
+		// close the fileWritter objects to save memory
+		fwCred.close(); 
+	    }
+	    
+	    if (br1.readLine() == null) { 
+		FileWriter fwDeb = new FileWriter("Debit Cards.txt"); 
+		fwDeb.close(); 
+	    } 
             
-            // close the fileWritter objects to save memory
-            fwCred.close(); 
-            fwDeb.close(); 
+	    // close the readers to save memory
+	    br1.close(); 
+	    br2.close(); 
+	    
+	    // Make the files read-only so they cannot be edited by the user 
+	    File fileCredit = new File("Credit Cards.txt"); 
+	    File fileDebit = new File("Debit Cards.txt");
+	    fileCredit.setReadOnly();
+	    fileDebit.setReadOnly(); 
+            
 	} catch (Exception e) { // If it fails to create a fileWritter object for either file, throw an eror 
             lblDisplayError.setText("ERROR: Error reading/writting files, please restart application!"); 
         }
         
-        // Run the method to add the cards to a global arrayList, as well as print them on the GUI for the user to view, edit, or delete.
+	initComponents(); // generated UI initializer
+	
+	// Run the method to add the cards to a global arrayList, as well as print them on the GUI for the user to view, edit, or delete.
         addCards(); 
-	initComponents();
     }
 
     @SuppressWarnings("unchecked")
