@@ -158,6 +158,9 @@
             <Property name="text" type="java.lang.String" value="No Card Entered"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCredit3ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnCredit1">
           <Properties>
@@ -173,24 +176,36 @@
             <Property name="text" type="java.lang.String" value="No Card Entered"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCredit2ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnDebit3">
           <Properties>
             <Property name="text" type="java.lang.String" value="No Card Entered"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDebit3ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnDebit2">
           <Properties>
             <Property name="text" type="java.lang.String" value="No Card Entered"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDebit2ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnDebit1">
           <Properties>
             <Property name="text" type="java.lang.String" value="No Card Entered"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDebit1ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblCreditTitle">
           <Properties>

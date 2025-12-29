@@ -127,22 +127,22 @@ public class EditCard extends javax.swing.JFrame {
 
         lblBalanceEdit.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 24)); // NOI18N
         lblBalanceEdit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblBalanceEdit.setText("Edit Balance:");
+        lblBalanceEdit.setText("Edit Balance/Credit Limit:");
 
         lblCurrent.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         lblCurrent.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblCurrent.setText("Current Balance:");
+        lblCurrent.setText("Current Balance:/Limit");
 
         txtBalance.setEditable(false);
         txtBalance.setBackground(new java.awt.Color(153, 153, 255));
 
         lblAdd.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         lblAdd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblAdd.setText("Add to Balance:");
+        lblAdd.setText("Add to Balance/Limit:");
 
         lblRemove.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         lblRemove.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblRemove.setText("Remove from Balance:");
+        lblRemove.setText("Remove from Balance/Limit:");
 
         txtAdd.setBackground(new java.awt.Color(153, 153, 255));
 
@@ -150,7 +150,7 @@ public class EditCard extends javax.swing.JFrame {
 
         lblNewTitle.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         lblNewTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNewTitle.setText("New Balance:");
+        lblNewTitle.setText("New Balance/Limit:");
 
         txtNewBalance.setEditable(false);
         txtNewBalance.setBackground(new java.awt.Color(153, 153, 255));
@@ -179,30 +179,10 @@ public class EditCard extends javax.swing.JFrame {
                                 .addComponent(lblCurrent))
                             .addGroup(pnlBackgroundLayout.createSequentialGroup()
                                 .addComponent(txtCardType, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblAdd)))
-                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                                .addGap(45, 45, 45)
-                                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(lblRemove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtRemove))))
-                        .addGap(57, 57, 57))
-                    .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtBank, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                                .addComponent(lblNewTitle)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNewBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(70, 70, 70))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(73, 73, 73))
                     .addGroup(pnlBackgroundLayout.createSequentialGroup()
                         .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -212,7 +192,31 @@ public class EditCard extends javax.swing.JFrame {
                         .addComponent(txtCVV, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnDelete)
-                        .addGap(97, 97, 97))))
+                        .addGap(97, 97, 97))
+                    .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtBank, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBackgroundLayout.createSequentialGroup()
+                                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                                        .addComponent(lblAdd)
+                                        .addGap(16, 16, 16))
+                                    .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                                        .addGap(16, 16, 16)
+                                        .addComponent(txtAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(56, 56, 56)
+                                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblRemove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(19, 19, 19))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBackgroundLayout.createSequentialGroup()
+                                .addComponent(lblNewTitle)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtNewBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(36, 36, 36))))))
             .addGroup(pnlBackgroundLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(lblDetailHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -269,13 +273,15 @@ public class EditCard extends javax.swing.JFrame {
                             .addComponent(lblCurrent)
                             .addComponent(txtBalance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblAdd)
-                            .addComponent(lblRemove))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtRemove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                                .addComponent(lblAdd)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                                .addComponent(lblRemove)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtRemove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblNewTitle)

@@ -19,7 +19,7 @@ public class AddCard extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        brnDebit = new javax.swing.JRadioButton();
+        btnDebit = new javax.swing.JRadioButton();
         btnCredit = new javax.swing.JRadioButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -74,7 +74,7 @@ public class AddCard extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Current Card Balance/Credit Limit:");
 
-        brnDebit.setText("Debit");
+        btnDebit.setText("Debit");
 
         btnCredit.setText("Credit");
 
@@ -134,7 +134,7 @@ public class AddCard extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(brnDebit)
+                                .addComponent(btnDebit)
                                 .addGap(27, 27, 27)
                                 .addComponent(btnCredit))
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -166,7 +166,7 @@ public class AddCard extends javax.swing.JFrame {
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(brnDebit)
+                    .addComponent(btnDebit)
                     .addComponent(btnCredit)
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
@@ -237,8 +237,8 @@ public class AddCard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton brnDebit;
     private javax.swing.JRadioButton btnCredit;
+    private javax.swing.JRadioButton btnDebit;
     private javax.swing.ButtonGroup btnGrp;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

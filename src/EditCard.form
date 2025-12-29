@@ -63,42 +63,14 @@
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="lblCurrent" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
                                   <Component id="txtCardType" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="lblAdd" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="txtBalance" min="-2" pref="200" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="lblRemove" max="32767" attributes="0"/>
-                                      <Component id="txtRemove" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
-                          <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtBank" min="-2" pref="200" max="-2" attributes="0"/>
-                              <Component id="txtNumber" min="-2" pref="200" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtAdd" min="-2" pref="97" max="-2" attributes="0"/>
-                              <Group type="102" attributes="0">
-                                  <Component id="lblNewTitle" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="txtNewBalance" min="-2" pref="200" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="txtBalance" min="-2" pref="200" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="txtDate" min="-2" pref="200" max="-2" attributes="0"/>
@@ -111,6 +83,39 @@
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="btnDelete" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="txtBank" min="-2" pref="200" max="-2" attributes="0"/>
+                              <Component id="txtNumber" min="-2" pref="200" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="lblAdd" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="16" pref="16" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace min="16" pref="16" max="-2" attributes="0"/>
+                                          <Component id="txtAdd" min="-2" pref="135" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="lblRemove" max="32767" attributes="0"/>
+                                      <Component id="txtRemove" min="-2" pref="177" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="lblNewTitle" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="txtNewBalance" min="-2" pref="200" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
@@ -182,14 +187,17 @@
                               <Component id="txtBalance" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblAdd" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblRemove" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtAdd" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtRemove" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="lblAdd" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="txtAdd" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="lblRemove" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="txtRemove" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -410,7 +418,7 @@
               <Font name="Yu Gothic UI Semibold" size="24" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Edit Balance:"/>
+            <Property name="text" type="java.lang.String" value="Edit Balance/Credit Limit:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblCurrent">
@@ -419,7 +427,7 @@
               <Font name="Yu Gothic UI Semibold" size="14" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Current Balance:"/>
+            <Property name="text" type="java.lang.String" value="Current Balance:/Limit"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtBalance">
@@ -439,7 +447,7 @@
               <Font name="Yu Gothic UI Semibold" size="14" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Add to Balance:"/>
+            <Property name="text" type="java.lang.String" value="Add to Balance/Limit:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblRemove">
@@ -448,7 +456,7 @@
               <Font name="Yu Gothic UI Semibold" size="14" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Remove from Balance:"/>
+            <Property name="text" type="java.lang.String" value="Remove from Balance/Limit:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtAdd">
@@ -471,7 +479,7 @@
               <Font name="Yu Gothic UI Semibold" size="14" style="0"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="New Balance:"/>
+            <Property name="text" type="java.lang.String" value="New Balance/Limit:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtNewBalance">

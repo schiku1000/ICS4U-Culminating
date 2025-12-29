@@ -73,7 +73,7 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="brnDebit" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnDebit" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                   <Component id="btnCredit" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -114,7 +114,7 @@
                   </Group>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="brnDebit" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnDebit" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnCredit" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -213,7 +213,7 @@
             <Property name="text" type="java.lang.String" value="Current Card Balance/Credit Limit:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="brnDebit">
+        <Component class="javax.swing.JRadioButton" name="btnDebit">
           <Properties>
             <Property name="text" type="java.lang.String" value="Debit"/>
           </Properties>

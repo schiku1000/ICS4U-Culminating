@@ -9,6 +9,11 @@ public class DebitCard extends Card {
 	this.dblBalance = dblBalance;
     }
     
+    // Getter method for balance 
+    public double getBalance() {
+	return dblBalance; 
+    }
+    
     // Setter Method (ONLY FOR BALANCE) 
     // I would do name too, but when you change your name, it also changes your card number typically (NOT ALWAYS)
     public void setLimit(double dblBalance) {

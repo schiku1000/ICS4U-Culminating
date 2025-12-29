@@ -1,6 +1,7 @@
 // here are the classes we will be importing for the application 
 import java.io.*; // for file reading and writing 
 import java.util.*; // mostly for arrayList 
+import java.text.DecimalFormat; // for rounding to 2 decimal places for the balance/credit limit 
 
 public class CardsManager extends javax.swing.JFrame {   
     
@@ -146,29 +147,23 @@ public class CardsManager extends javax.swing.JFrame {
         // The reason why this is here and not in the addCards() function is because of efficiency. 
         // This only has to run once per program, whereas the addCards() function will be run multiple times. 
 	try {
+	    // If the files exist, it will initialize readers for it. 
+	    // If they do not exist, it will throw an error. 
+	    // That is why it is in a try and catch block, if it errors, it will create the files! 
 	    BufferedReader br1 = new BufferedReader(new FileReader("Credit Cards.txt")); 
-	    BufferedReader br2 = new BufferedReader(new FileReader("Credit Cards.txt")); 
-	    
-	    // Check to see if the files are empty/null, if they aren't don't change them. 
-	    if (br1.readLine() == null) { 
-		FileWriter fwCred = new FileWriter("Credit Cards.txt");
-		
-		// close the fileWritter objects to save memory
-		fwCred.close(); 
-	    }
-	    
-	    if (br1.readLine() == null) { 
-		FileWriter fwDeb = new FileWriter("Debit Cards.txt"); 
-		fwDeb.close(); 
-	    } 
-            
-	    // close the readers to save memory
-	    br1.close(); 
-	    br2.close(); 
+	    BufferedReader br2 = new BufferedReader(new FileReader("Debit Cards.txt")); 
 	    
 	} catch (IOException e) { // If it fails to create a fileWritter object for either file, throw an eror 
-            lblDisplayError.setText("ERROR: Error reading/writting files, please restart application!"); 
-        }
+	    try { // Try and catch required for IOException 
+		FileWriter fwCred = new FileWriter("Credit Cards.txt");
+		// close the fileWritter objects to save memory
+		fwCred.close(); 
+
+		FileWriter fwDeb = new FileWriter("Debit Cards.txt"); 
+		// close the fileWritter objects to save memory
+		fwDeb.close(); 
+	    } catch (IOException d){}
+	}
 	
 	// Run the method to add the cards to a global arrayList, as well as print them on the GUI for the user to view, edit, or delete.
         addCards(); 
@@ -216,6 +211,11 @@ public class CardsManager extends javax.swing.JFrame {
 
         btnCredit3.setText("No Card Entered");
         btnCredit3.setEnabled(false);
+        btnCredit3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCredit3ActionPerformed(evt);
+            }
+        });
 
         btnCredit1.setText("No Card Entered");
         btnCredit1.setEnabled(false);
@@ -227,15 +227,35 @@ public class CardsManager extends javax.swing.JFrame {
 
         btnCredit2.setText("No Card Entered");
         btnCredit2.setEnabled(false);
+        btnCredit2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCredit2ActionPerformed(evt);
+            }
+        });
 
         btnDebit3.setText("No Card Entered");
         btnDebit3.setEnabled(false);
+        btnDebit3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDebit3ActionPerformed(evt);
+            }
+        });
 
         btnDebit2.setText("No Card Entered");
         btnDebit2.setEnabled(false);
+        btnDebit2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDebit2ActionPerformed(evt);
+            }
+        });
 
         btnDebit1.setText("No Card Entered");
         btnDebit1.setEnabled(false);
+        btnDebit1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDebit1ActionPerformed(evt);
+            }
+        });
 
         lblCreditTitle.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         lblCreditTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -351,8 +371,117 @@ public class CardsManager extends javax.swing.JFrame {
 	EditCard screen = new EditCard(); 
 	
 	// Set the text/details on the card on this screen by using the object we had just created
+	screen.txtName.setText(listCreditCards.get(0).getName()); 
+	screen.txtBank.setText(listCreditCards.get(0).getBank());
+	screen.txtNumber.setText(listCreditCards.get(0).getNumber());
+	screen.txtDate.setText(listCreditCards.get(0).getExpiry()); 
+	screen.txtCVV.setText(String.valueOf(listCreditCards.get(0).getCVV())); 
+	screen.txtBalance.setText("$" + String.valueOf(listCreditCards.get(0).getLimit())); 
+	screen.txtCardType.setText("Credit Card");
 	
+	// go to the next screen
+	screen.setVisible(true);
     }//GEN-LAST:event_btnCredit1ActionPerformed
+
+    private void btnCredit2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCredit2ActionPerformed
+        // First, remove the current screen
+	this.dispose(); 
+	
+	// Now, create an object of the screen we are going to show 
+	EditCard screen = new EditCard(); 
+	
+	// Set the text/details on the card on this screen by using the object we had just created
+	screen.txtName.setText(listCreditCards.get(1).getName()); 
+	screen.txtBank.setText(listCreditCards.get(1).getBank());
+	screen.txtNumber.setText(listCreditCards.get(1).getNumber());
+	screen.txtDate.setText(listCreditCards.get(1).getExpiry()); 
+	screen.txtCVV.setText(String.valueOf(listCreditCards.get(1).getCVV())); 
+	screen.txtBalance.setText("$" + String.valueOf(listCreditCards.get(1).getLimit())); 
+	screen.txtCardType.setText("Credit Card");
+	
+	// go to the next screen
+	screen.setVisible(true);
+    }//GEN-LAST:event_btnCredit2ActionPerformed
+
+    private void btnCredit3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCredit3ActionPerformed
+        // First, remove the current screen
+	this.dispose(); 
+	
+	// Now, create an object of the screen we are going to show 
+	EditCard screen = new EditCard(); 
+	
+	// Set the text/details on the card on this screen by using the object we had just created
+	screen.txtName.setText(listCreditCards.get(2).getName()); 
+	screen.txtBank.setText(listCreditCards.get(2).getBank());
+	screen.txtNumber.setText(listCreditCards.get(2).getNumber());
+	screen.txtDate.setText(listCreditCards.get(2).getExpiry()); 
+	screen.txtCVV.setText(String.valueOf(listCreditCards.get(2).getCVV())); 
+	screen.txtBalance.setText("$" + String.valueOf(listCreditCards.get(2).getLimit())); 
+	screen.txtCardType.setText("Credit Card");
+	
+	// go to the next screen
+	screen.setVisible(true);
+    }//GEN-LAST:event_btnCredit3ActionPerformed
+
+    private void btnDebit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDebit1ActionPerformed
+        // First, remove the current screen
+	this.dispose(); 
+	
+	// Now, create an object of the screen we are going to show 
+	EditCard screen = new EditCard(); 
+	
+	// Set the text/details on the card on this screen by using the object we had just created
+	screen.txtName.setText(listDebitCards.get(0).getName()); 
+	screen.txtBank.setText(listDebitCards.get(0).getBank());
+	screen.txtNumber.setText(listDebitCards.get(0).getNumber());
+	screen.txtDate.setText(listDebitCards.get(0).getExpiry()); 
+	screen.txtCVV.setText(String.valueOf(listDebitCards.get(0).getCVV())); 
+	screen.txtBalance.setText("$" + String.valueOf(listDebitCards.get(0).getBalance())); 
+	screen.txtCardType.setText("Credit Card");
+	
+	// go to the next screen
+	screen.setVisible(true);
+    }//GEN-LAST:event_btnDebit1ActionPerformed
+
+    private void btnDebit2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDebit2ActionPerformed
+        // First, remove the current screen
+	this.dispose(); 
+	
+	// Now, create an object of the screen we are going to show 
+	EditCard screen = new EditCard(); 
+	
+	// Set the text/details on the card on this screen by using the object we had just created
+	screen.txtName.setText(listDebitCards.get(1).getName()); 
+	screen.txtBank.setText(listDebitCards.get(1).getBank());
+	screen.txtNumber.setText(listDebitCards.get(1).getNumber());
+	screen.txtDate.setText(listDebitCards.get(1).getExpiry()); 
+	screen.txtCVV.setText(String.valueOf(listDebitCards.get(1).getCVV())); 
+	screen.txtBalance.setText("$" + String.valueOf(listDebitCards.get(1).getBalance())); 
+	screen.txtCardType.setText("Credit Card");
+	
+	// go to the next screen
+	screen.setVisible(true);
+    }//GEN-LAST:event_btnDebit2ActionPerformed
+
+    private void btnDebit3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDebit3ActionPerformed
+        // First, remove the current screen
+	this.dispose(); 
+	
+	// Now, create an object of the screen we are going to show 
+	EditCard screen = new EditCard(); 
+	
+	// Set the text/details on the card on this screen by using the object we had just created
+	screen.txtName.setText(listDebitCards.get(2).getName()); 
+	screen.txtBank.setText(listDebitCards.get(2).getBank());
+	screen.txtNumber.setText(listDebitCards.get(2).getNumber());
+	screen.txtDate.setText(listDebitCards.get(2).getExpiry()); 
+	screen.txtCVV.setText(String.valueOf(listDebitCards.get(2).getCVV())); 
+	screen.txtBalance.setText("$" + String.valueOf(listDebitCards.get(2).getBalance())); 
+	screen.txtCardType.setText("Credit Card");
+	
+	// go to the next screen
+	screen.setVisible(true);
+    }//GEN-LAST:event_btnDebit3ActionPerformed
 
     public static void main(String args[]) {
 	/* Set the Nimbus look and feel */
