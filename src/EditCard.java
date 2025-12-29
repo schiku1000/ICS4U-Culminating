@@ -10,7 +10,6 @@ public class EditCard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnGrp = new javax.swing.ButtonGroup();
         pnlBackground = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
         btnSave = new javax.swing.JButton();
@@ -343,7 +342,6 @@ public class EditCard extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDelete;
-    private javax.swing.ButtonGroup btnGrp;
     private javax.swing.JButton btnSave;
     private javax.swing.JLabel lblAdd;
     private javax.swing.JLabel lblBalanceEdit;
@@ -361,14 +359,14 @@ public class EditCard extends javax.swing.JFrame {
     private javax.swing.JLabel lblType;
     private javax.swing.JPanel pnlBackground;
     private javax.swing.JTextField txtAdd;
-    private javax.swing.JTextField txtBalance;
-    private javax.swing.JTextField txtBank;
-    private javax.swing.JTextField txtCVV;
-    private javax.swing.JTextField txtCardType;
-    private javax.swing.JTextField txtDate;
-    private javax.swing.JTextField txtName;
+    javax.swing.JTextField txtBalance;
+    javax.swing.JTextField txtBank;
+    javax.swing.JTextField txtCVV;
+    javax.swing.JTextField txtCardType;
+    javax.swing.JTextField txtDate;
+    javax.swing.JTextField txtName;
     private javax.swing.JTextField txtNewBalance;
-    private javax.swing.JTextField txtNumber;
+    javax.swing.JTextField txtNumber;
     private javax.swing.JTextField txtRemove;
     // End of variables declaration//GEN-END:variables
 }
