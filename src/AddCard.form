@@ -3,6 +3,9 @@
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Component class="javax.swing.ButtonGroup" name="btnGrp">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="btnGrp.add(btnDebit);&#xa;btnGrp.add(btnCredit);"/>
+      </AuxValues>
     </Component>
   </NonVisualComponents>
   <Properties>
