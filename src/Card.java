@@ -4,12 +4,12 @@ public abstract class Card {
     // Instance variables 
     private String strName;
     private String strBank; 
-    private long lngNumber; 
+    private String lngNumber; 
     private String strExpiry; 
     private short srtCVV; 
 
     // Constructor 
-    public Card(String strName, String strBank, long lngNumber, String strExpiry, short srtCVV) {
+    public Card(String strName, String strBank, String strNumber, String strExpiry, short srtCVV) {
 	this.strName = strName;
 	this.strBank = strBank;
 	this.lngNumber = lngNumber;

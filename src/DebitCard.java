@@ -1,23 +1,23 @@
 public class DebitCard extends Card {
     
     // Added Instance Variable
-    private long lngBalance; 
+    private double dblBalance; 
     
     // Constructor
-    public DebitCard(String strName, String strBank, long lngNumber, String strExpiry, short srtCVV, long lngBalance) {
-	super(strName, strBank, lngNumber, strExpiry, srtCVV); 
-	this.lngBalance = lngBalance;
+    public DebitCard(String strName, String strBank, String strNumber, String strExpiry, short srtCVV, double dblBalance) {
+	super(strName, strBank, strNumber, strExpiry, srtCVV); 
+	this.dblBalance = dblBalance;
     }
     
     // Setter Method (ONLY FOR BALANCE) 
     // I would do name too, but when you change your name, it also changes your card number typically (NOT ALWAYS)
-    public void setLimit(long lngLimit) {
-	this.lngBalance = lngBalance;
+    public void setLimit(double dblBalance) {
+	this.dblBalance = dblBalance;
     }
     
     // toString() method
     @Override 
     public String toString() { 
-        return super.toString() + lngBalance + "\n";
+        return super.toString() + dblBalance + "\n";
     }
 }

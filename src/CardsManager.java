@@ -1,6 +1,7 @@
-
-import java.io.*;
-import java.util.*;
+// here are the classes we will be importing for the application 
+import java.io.*; // for file reading and writing 
+import java.util.*; // mostly for arrayList 
+import java.text.DecimalFormat; // for rounding 
 
 public class CardsManager extends javax.swing.JFrame {   
     
@@ -13,35 +14,65 @@ public class CardsManager extends javax.swing.JFrame {
     // Create a method to edit the cards on screen
     public void addCards() {
         
-	// Intialize a bufferedReader
+        // FIRST PART OF THIS METHOD: Add all the cards from the textfile into objects for the program 
+        // First, I will do it for the credit cards, and then I will do it for the debit cards  
+        
+	// Intialize a bufferedReader 
         try {
             BufferedReader brCred = new BufferedReader(new FileReader("Credit Cards.txt"));
             String readCred = brCred.readLine();
             
-            // #1: Add to the Credit Card List 
+            // Create a var which will work like a boolean 
+            boolean boolRunning = true; 
             
+            // #1: Add to the Credit Card List 
+	    while(boolRunning && readCred != null) {
+                // this is the list which will hold all of the values of the entered card 
+                // the reason why is has a length of 6 is because there are 6 total values for the card.
+		String[] strTempCredit = new String[6]; 
+                
+                // A try and except is used here to catch if readLine() errors (null)
+                try {
+                    for (int i = 0; i < strTempCredit.length; i++) {
+                        strTempCredit[i] = readCred; // set each element of the temporary array as the line read by the bufferedReader
+                        readCred = brCred.readLine(); // move onto the next line 
+                    }
+                } catch (Exception e) { // if it runs out of lines
+                    boolRunning = false; // Make sure the boolean is set as false so that the loop stops running 
+                } 
+                
+                // add to the credit card list using the values we found in the for loop, and have saved in the array
+                // most of the values are string, but some like the CVV and Balance have to be in short/long form as they are numbers
+                listCreditCards.add(new CreditCard(strTempCredit[0], strTempCredit[1], strTempCredit[2], strTempCredit[3], Short.parseShort(strTempCredit[4]), Double.parseDouble(strTempCredit[5])));
+            }
             
             brCred.close(); // close the reader
             
+            // #2: Now do the same thing for the debit cards
             BufferedReader brDeb = new BufferedReader(new FileReader("Debit Cards.txt"));
-            String readDeb = brDeb.readLine(); 
-        
+            String readDeb = brDeb.readLine();
+            
+            
         
         } catch (Exception e) {}
     }
     
     public CardsManager() {
-	// First, try creating the files to hold it 
+	// First, try creating the files to hold it if they do not currently exist
+        // The reason why this is here and not in the addCards() function is because of efficiency. 
+        // This only has to run once per program, whereas the addCards() function will be run multiple times. 
 	try {
 	    FileWriter fwCred = new FileWriter("Credit Cards.txt");
             FileWriter fwDeb = new FileWriter("Debit Cards.txt"); 
             
+            // close the fileWritter objects to save memory
             fwCred.close(); 
             fwDeb.close(); 
 	} catch (Exception e) { // If it fails to create a fileWritter object for either file, throw an eror 
             lblDisplayError.setText("ERROR: Error reading/writting files, please restart application!"); 
         }
         
+        // Run the method to add the cards to a global arrayList, as well as print them on the GUI for the user to view, edit, or delete.
         addCards(); 
 	initComponents();
     }
