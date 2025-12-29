@@ -17,6 +17,10 @@ public class CardsManager extends javax.swing.JFrame {
     // Create a method to edit the cards on screen
     public void addCards() {
 	
+	// Clear the lists when initialized 
+	listCreditCards.clear(); 
+	listDebitCards.clear(); 
+	
         // FIRST PART OF THIS METHOD: Add all the cards from the textfile into objects for the program 
         // First, I will do it for the credit cards, and then I will do it for the debit cards  
 	// Intialize a bufferedReader 
