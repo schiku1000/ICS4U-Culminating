@@ -16,10 +16,9 @@ public class CardsManager extends javax.swing.JFrame {
     
     // Create a method to edit the cards on screen
     public void addCards() {
-        
+	
         // FIRST PART OF THIS METHOD: Add all the cards from the textfile into objects for the program 
         // First, I will do it for the credit cards, and then I will do it for the debit cards  
-        
 	// Intialize a bufferedReader 
         try {
             BufferedReader brCred = new BufferedReader(new FileReader("Credit Cards.txt"));
@@ -141,7 +140,7 @@ public class CardsManager extends javax.swing.JFrame {
 		btnDebit3.setText("View/Edit Debit Card #3");
 		
 		break; 
-	}
+	} 
 	
     }
     
