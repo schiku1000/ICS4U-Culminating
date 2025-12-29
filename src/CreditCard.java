@@ -1,28 +1,28 @@
 public class CreditCard extends Card {
     
     // Added Instance Variable
-    private double dblLimit; 
+    private String strLimit; 
     
     // Constructor
-    public CreditCard(String strName, String strBank, String strNumber, String strExpiry, short srtCVV, double dblLimit) {
+    public CreditCard(String strName, String strBank, String strNumber, String strExpiry, short srtCVV, String strLimit) {
 	super(strName, strBank, strNumber, strExpiry, srtCVV); 
-	this.dblLimit = dblLimit;
+	this.strLimit = strLimit;
     }
     
     // Getter method for limit 
-    public double getLimit() {
-	return dblLimit; 
+    public String getLimit() {
+	return strLimit; 
     }
     
     // Setter Method (ONLY FOR BALANCE) 
     // I would do name too, but when you change your name, it also changes your card number typically (NOT ALWAYS)
-    public void setLimit(double dblLimit) {
-	this.dblLimit = dblLimit;
+    public void setLimit(String strLimit) {
+	this.strLimit = strLimit;
     }
     
     // toString() method
     @Override 
     public String toString() { 
-        return super.toString() + dblLimit + "\n";
+        return super.toString() + strLimit + "\n";
     }
 }

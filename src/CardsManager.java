@@ -11,6 +11,9 @@ public class CardsManager extends javax.swing.JFrame {
     static ArrayList<CreditCard> listCreditCards = new ArrayList<>(); 
     static ArrayList<DebitCard> listDebitCards = new ArrayList<>();
     
+    // Create a decimal format 
+    DecimalFormat df = new DecimalFormat("0.00"); 
+    
     // Create a method to edit the cards on screen
     public void addCards() {
         
@@ -40,10 +43,12 @@ public class CardsManager extends javax.swing.JFrame {
                 } catch (Exception e) { // if it runs out of lines
                     boolRunning = false; // Make sure the boolean is set as false so that the loop stops running 
                 } 
-                
+
+		double dblLimit = Double.parseDouble(strTemp[5]); 
+		
                 // add to the credit card list using the values we found in the for loop, and have saved in the array
                 // most of the values are string, but some like the CVV and Balance have to be in short/long form as they are numbers
-                listCreditCards.add(new CreditCard(strTemp[0], strTemp[1], strTemp[2], strTemp[3], Short.parseShort(strTemp[4]), Double.parseDouble(strTemp[5])));
+                listCreditCards.add(new CreditCard(strTemp[0], strTemp[1], strTemp[2], strTemp[3], Short.parseShort(strTemp[4]), df.format(dblLimit)));
             }
             
             brCred.close(); // close the reader
@@ -69,13 +74,14 @@ public class CardsManager extends javax.swing.JFrame {
                     boolRunning = false; // Make sure the boolean is set as false so that the loop stops running 
                 } 
 		
+		double dblBalance = Double.parseDouble(strTemp[5]); 
+				
 		// add to the debit card list using the values we found in the for loop, and have saved in the array
                 // most of the values are string, but some like the CVV and Balance have to be in short/long form as they are numbers
-                listDebitCards.add(new DebitCard(strTemp[0], strTemp[1], strTemp[2], strTemp[3], Short.parseShort(strTemp[4]), Double.parseDouble(strTemp[5])));
+                listDebitCards.add(new DebitCard(strTemp[0], strTemp[1], strTemp[2], strTemp[3], Short.parseShort(strTemp[4]), df.format(dblBalance)));
 	    }
-            
         
-        } catch (Exception e) {}
+        } catch (Exception e) {System.out.println(e.getMessage());}
 	
 	// SECOND PART: Add all of these values to the GUI using buttons 
 	// Do this using switch statement to know which cards to enable 
