@@ -220,7 +220,6 @@ public class AddCard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // checks todo: 
 	/** 
 	 * Make sure hte crdit card number isnt a dupe 
 	 * Make sure the name is a string with letters only, with at least 2 seperate strings
@@ -231,6 +230,9 @@ public class AddCard extends javax.swing.JFrame {
 	 * for date, make sure the / is element 2 of the 5 character array (turn the str into a list)
 	 *   --> use a switch statement for all the months, and then make the year be between 26 and 30 (credit/debit cards expire within 5 years)
 	 */
+	
+	// #1: Create a string variable for every input 
+	strName = txtName.getText().
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

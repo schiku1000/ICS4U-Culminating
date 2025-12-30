@@ -277,6 +277,7 @@ public class CardsManager extends javax.swing.JFrame {
         lblDisplayError.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
         lblDisplayError.setForeground(new java.awt.Color(204, 0, 0));
         lblDisplayError.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDisplayError.setToolTipText("");
 
         javax.swing.GroupLayout pnlBackgroundLayout = new javax.swing.GroupLayout(pnlBackground);
         pnlBackground.setLayout(pnlBackgroundLayout);
