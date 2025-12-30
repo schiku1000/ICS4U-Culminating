@@ -32,6 +32,7 @@ public class AddCard extends javax.swing.JFrame {
         txtNumber = new javax.swing.JTextField();
         txtDate = new javax.swing.JTextField();
         txtCVV = new javax.swing.JTextField();
+        lblDisplayError = new javax.swing.JLabel();
 
         btnGrp.add(btnDebit);
         btnGrp.add(btnCredit);
@@ -72,7 +73,7 @@ public class AddCard extends javax.swing.JFrame {
 
         lblLimitBalance.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
         lblLimitBalance.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblLimitBalance.setText("Current Card Balance/Credit Limit:");
+        lblLimitBalance.setText("Card Balance/Credit Limit:");
 
         btnDebit.setText("Debit");
 
@@ -110,44 +111,54 @@ public class AddCard extends javax.swing.JFrame {
 
         txtCVV.setBackground(new java.awt.Color(153, 153, 255));
 
+        lblDisplayError.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
+        lblDisplayError.setForeground(new java.awt.Color(204, 0, 0));
+        lblDisplayError.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout pnlBackgroundLayout = new javax.swing.GroupLayout(pnlBackground);
         pnlBackground.setLayout(pnlBackgroundLayout);
         pnlBackgroundLayout.setHorizontalGroup(
             pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblWarning, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                .addGap(217, 217, 217)
-                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lblBank)
-                        .addComponent(lblType)
-                        .addComponent(lblCardNumber)
-                        .addComponent(lblDate)
-                        .addComponent(lblCVV)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlBackgroundLayout.createSequentialGroup()
-                            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(28, 28, 28))
-                        .addComponent(lblName))
-                    .addComponent(lblLimitBalance))
                 .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addGap(232, 232, 232)
+                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lblBank)
+                                .addComponent(lblType)
+                                .addComponent(lblCardNumber)
+                                .addComponent(lblDate)
+                                .addComponent(lblCVV)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlBackgroundLayout.createSequentialGroup()
+                                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(28, 28, 28))
+                                .addComponent(lblName))
+                            .addComponent(lblLimitBalance))
                         .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                                .addComponent(btnDebit)
-                                .addGap(27, 27, 27)
-                                .addComponent(btnCredit))
-                            .addComponent(txtBank, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtLimit, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCVV, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(200, Short.MAX_VALUE))
-            .addComponent(lblWarning, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                                        .addComponent(btnDebit)
+                                        .addGap(27, 27, 27)
+                                        .addComponent(btnCredit))
+                                    .addComponent(txtBank, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtLimit, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCVV, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                                .addGap(110, 110, 110)
+                                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 194, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBackgroundLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblDisplayError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         pnlBackgroundLayout.setVerticalGroup(
             pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,9 +172,9 @@ public class AddCard extends javax.swing.JFrame {
                     .addComponent(lblName)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblLimitBalance)
-                    .addComponent(txtLimit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtLimit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblLimitBalance))
                 .addGap(18, 18, 18)
                 .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDebit)
@@ -189,7 +200,9 @@ public class AddCard extends javax.swing.JFrame {
                 .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBack)
                     .addComponent(btnAdd))
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                .addComponent(lblDisplayError)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -207,11 +220,29 @@ public class AddCard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
+        // checks todo: 
+	/** 
+	 * Make sure hte crdit card number isnt a dupe 
+	 * Make sure the name is a string with letters only, with at least 2 seperate strings
+	 * make sure CVV, balance, and card number are numbers
+	 * make sure cvv is either 3 or 4 numbers (less than 9999 ) 
+	 * make sure a radio button is clicked for credit or debit
+	 * capitalize name, bank
+	 * for date, make sure the / is element 2 of the 5 character array (turn the str into a list)
+	 *   --> use a switch statement for all the months, and then make the year be between 26 and 30 (credit/debit cards expire within 5 years)
+	 */
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
+	// clear textspace
+	lblDisplayError.setText("");
+
+	// Dispose of the current screen, and go back to the menu (Cards Manager) 
+	this.dispose(); // dispose the current screen
+	
+	// Create a new object for the class, then turn it into the new screen
+	CardsManager screen = new CardsManager(); 
+	screen.setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
 
     public static void main(String args[]) {
@@ -246,6 +277,7 @@ public class AddCard extends javax.swing.JFrame {
     private javax.swing.JLabel lblCVV;
     private javax.swing.JLabel lblCardNumber;
     private javax.swing.JLabel lblDate;
+    private javax.swing.JLabel lblDisplayError;
     private javax.swing.JLabel lblLimitBalance;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblTitle;
