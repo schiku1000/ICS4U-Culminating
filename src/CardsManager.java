@@ -14,10 +14,40 @@ public class CardsManager extends javax.swing.JFrame {
     // Create a decimal format 
     DecimalFormat df = new DecimalFormat("0.00"); 
     
+    // Create a method to write to the list of cards
+    // It will take a boolean input to know whether it is dealing with credit, or debit cards.
+    // If it is true, it is credit cards, if it is false, it is debit cards! 
+    public static void writeToFile(boolean boolCredit) {
+	if (boolCredit) {
+	    try {
+		// Clear the file, then write to it: 
+		FileWriter fwCred = new FileWriter("Credit Cards.txt");
+		for (int i = 0; i < CardsManager.listCreditCards.size(); i++) {
+		    fwCred.write(CardsManager.listCreditCards.get(i).toString());
+		}
+		
+		fwCred.close(); // close the writter to prevent data loss and memory leaks
+		
+	    } catch (IOException e) {}
+	} else {
+	    // Now that it is removed from the list, rewrite the file without it 
+	    try {
+		// Clear the file, then write to it: 
+		FileWriter fwDeb = new FileWriter("Debit Cards.txt");
+		for (int i = 0; i < CardsManager.listDebitCards.size(); i++) {
+		    fwDeb.write(CardsManager.listDebitCards.get(i).toString());
+		}
+		
+		fwDeb.close(); // close the writter to prevent data loss and memory leaks
+		
+	    } catch (IOException e) {}
+	}
+    }
+    
     // Create a method to edit the cards on screen
     public void addCards() {
 	
-	// Clear the lists when initialized 
+	// Clear the lists when initialized so that it won't duplicate itself when it comes back to this screen
 	listCreditCards.clear(); 
 	listDebitCards.clear(); 
 	
@@ -88,6 +118,8 @@ public class CardsManager extends javax.swing.JFrame {
 	
 	// SECOND PART: Add all of these values to the GUI using buttons 
 	// Do this using switch statement to know which cards to enable 
+	// Depending on the count of cards, enable the buttons! 
+	// For example, if you have 2 debit cards in the list, that means that you only have to enable 2 of the buttons, NOT all 3! This switch statement will account for that. 
 	switch(listCreditCards.size()) {
 	    case 0:
 		break; // Do nothing; nothing is enabled 

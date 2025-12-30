@@ -225,14 +225,60 @@ public class AddCard extends javax.swing.JFrame {
 	 * Make sure the name is a string with letters only, with at least 2 seperate strings
 	 * make sure CVV, balance, and card number are numbers
 	 * make sure cvv is either 3 or 4 numbers (less than 9999 ) 
+	 *    -->  maybe turn it into a list or smt and find the length
 	 * make sure a radio button is clicked for credit or debit
 	 * capitalize name, bank
 	 * for date, make sure the / is element 2 of the 5 character array (turn the str into a list)
 	 *   --> use a switch statement for all the months, and then make the year be between 26 and 30 (credit/debit cards expire within 5 years)
+	 * MAKE SURE to account for either debit or credit being max (check size) 
 	 */
+
+	// #1: Create boolean variables which will save whether the current inputs are valid or invalid 
+	// boolNameValid makes sure the name consists of only letters, and at least has 2 seperate strings (to signify first and last name) 
+	// boolCard makes sure the Card # is not a duplicate, and only consists of numbers
+	// boolBankValid will make sure the bank inputted/card issuer's name only consists of letters
+	// boolTypeValid will make sure that either the Debit or Credit radio button was selected, and that they aren't at their max capacity
+	// boolCVV will make sure the CVV is all numbers, and that it is either 3 or 4 numbers long
+	// boolDateValid will make sure the expiry date is valid (Make sure the month is less than 12, and that the expiry year is between 2026 - 2030)
+	boolean boolNameValid = true, boolCardValid = true, boolBankValid = true, boolTypeValid = true, boolCVV = true, boolDateValid = false; 
 	
-	// #1: Create a string variable for every input 
-	strName = txtName.getText().
+	// #2: Create a string variable for every input (except card type)  
+	// 7 total values
+	String strName = txtName.getText().trim(); // CAPITALIZE LATER
+	String strBalance = txtLimit.getText().trim(); 
+	String strBank = txtBank.getText().trim(); // CAPITALIZE LATER
+	String strNumber = txtNumber.getText().trim(); 
+	String strCVV = txtCVV.getText().trim();
+	String strDate = txtDate.getText().trim(); 
+	
+	// Surround the entire verifying process in a while loop to break out of the loop if it ever errors
+	// This will allow easy error handling. 
+	while(true) {
+	    // Use an if-else statement to find out whether it is a credit or debit card 
+	    if (btnGrp.getSelection() == btnDebit && CardsManager.listCreditCards.size() < 3) {
+		boolean boolCredit = true; 
+	    }
+	    
+	    // Now that everything has been verified, add the new card to the list, then write to the file. 
+	    
+	    break; // break out of the loop since it is now complete
+	}
+	
+	// All the different error messages
+	// These are all customized to tell the user WHICH input specifically is causing the error
+	if (!boolTypeValid) {
+	    lblDisplayError.setText("ERROR: Make sure the type of card is selected, and it is not at max (3 cards per type)!"); 
+	} else if (!boolNameValid) {
+	    lblDisplayError.setText("ERROR: Make sure your name only consists of English Letters)!"); 
+	} else if (!boolCardValid) {
+	    lblDisplayError.setText("ERROR: Make sure your card number is NOT a duplicate, and only consists of numbers!"); 
+	} else if (!boolBankValid) {
+	    lblDisplayError.setText("ERROR: Make sure your card issuer's name only consists of English Letters)!"); 
+	} else if (!boolDateValid) {
+	    lblDisplayError.setText("ERROR: Make sure your date is in the given format, and that your expiry year is valid (Between 2026 - 2030)!");
+	} else if (!boolCVV) {
+	    lblDisplayError.setText("ERROR: Make sure your CVV is either 3 - 4 characters, and only numbers!"); 
+	}
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

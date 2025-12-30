@@ -399,34 +399,16 @@ public class EditCard extends javax.swing.JFrame {
 	if (boolCredit) {
 	    // Since the list is static, we can directly access it using the class name 
 	    CardsManager.listCreditCards.remove(bytCard);
-	 
-	    // Now that it is removed from the list, rewrite the file without it 
-	    try {
-		// Clear the file, then write to it: 
-		FileWriter fwCred = new FileWriter("Credit Cards.txt");
-		for (int i = 0; i < CardsManager.listCreditCards.size(); i++) {
-		    fwCred.write(CardsManager.listCreditCards.get(i).toString());
-		}
-		
-		fwCred.close(); // close the writter to prevent data loss and memory leaks
-		
-	    } catch (IOException e) {}
 	} else {
 	    // Since the list is static, we can directly access it using the class name 
 	    CardsManager.listDebitCards.remove(bytCard);
-	 
-	    // Now that it is removed from the list, rewrite the file without it 
-	    try {
-		// Clear the file, then write to it: 
-		FileWriter fwDeb = new FileWriter("Debit Cards.txt");
-		for (int i = 0; i < CardsManager.listDebitCards.size(); i++) {
-		    fwDeb.write(CardsManager.listDebitCards.get(i).toString());
-		}
-		
-		fwDeb.close(); // close the writter to prevent data loss and memory leaks
-		
-	    } catch (IOException e) {}
 	}
+	
+	// Run the custom function to write to the file 
+	CardsManager.writeToFile(boolCredit); 
+	
+	// Edit the GUI to show it's been deleted
+	lblDisplayOut.setText("Card has been successfully deleted.");
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     public static void main(String args[]) {
