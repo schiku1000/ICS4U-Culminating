@@ -242,6 +242,9 @@ public class AddCard extends javax.swing.JFrame {
 	// boolDateValid will make sure the expiry date is valid (Make sure the month is less than 12, and that the expiry year is between 2026 - 2030)
 	boolean boolNameValid = true, boolCardValid = true, boolBankValid = true, boolTypeValid = true, boolCVV = true, boolDateValid = false; 
 	
+	// Create another boolean to save whether it is a credit card or debit card being added
+	boolean boolCredit;
+	
 	// #2: Create a string variable for every input (except card type)  
 	// 7 total values
 	String strName = txtName.getText().trim(); // CAPITALIZE LATER
@@ -251,12 +254,20 @@ public class AddCard extends javax.swing.JFrame {
 	String strCVV = txtCVV.getText().trim();
 	String strDate = txtDate.getText().trim(); 
 	
+	// First check, make sure values aren't blank
+	
 	// Surround the entire verifying process in a while loop to break out of the loop if it ever errors
 	// This will allow easy error handling. 
 	while(true) {
+	    // Make sure the type was selected/is valid
 	    // Use an if-else statement to find out whether it is a credit or debit card 
-	    if (btnGrp.getSelection() == btnDebit && CardsManager.listCreditCards.size() < 3) {
-		boolean boolCredit = true; 
+	    if (btnGrp.getSelection() == btnCredit && CardsManager.listCreditCards.size() < 3) {
+		boolCredit = true; 
+	    } else if (btnGrp.getSelection() == btnDebit && CardsManager.listDebitCards.size() < 3) {
+		boolCredit = false; 
+	    } else { // This means either they didn't choose whether it's a credit or debit card, OR it is at its max, so it is INVALID. 
+		boolTypeValid = false; // set the validity as false
+		break; // break out of the loop 
 	    }
 	    
 	    // Now that everything has been verified, add the new card to the list, then write to the file. 
