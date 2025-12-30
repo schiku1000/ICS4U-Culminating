@@ -275,9 +275,9 @@ public class EditCard extends javax.swing.JFrame {
                     .addGroup(pnlBackgroundLayout.createSequentialGroup()
                         .addComponent(lblBalanceEdit)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblCurrent)
-                            .addComponent(txtBalance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtBalance, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblCurrent))
                         .addGap(18, 18, 18)
                         .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(pnlBackgroundLayout.createSequentialGroup()
@@ -318,11 +318,22 @@ public class EditCard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        // TODO add your handling code here:
+        // clear textspace
+	lblDisplayOut.setText("");
+
+	// First, make sure that the inputs for "Add to Balance/Limit" and "Remove from Balance/Limit" aren't empty 
+	if (!txtAdd.getText().equals("") && !txtRemove.getText().equals("")) {
+	    
+	} else {
+	    lblDisplayOut.setText("ERROR: Make sure your inputs aren't blank!");
+	}
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // When the back button is clicked, go back to the main screen (Cards Manager) 
+        // clear textspace
+	lblDisplayOut.setText("");
+
+	// When the back button is clicked, go back to the main screen (Cards Manager) 
 	this.dispose(); // dispose the current screen
 	
 	// Create a new object for the class
@@ -331,7 +342,10 @@ public class EditCard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // Use the boolean we saved earlier to know whether to delete from credit card or debit card list 
+        // clear textspace
+	lblDisplayOut.setText("");
+
+	// Use the boolean we saved earlier to know whether to delete from credit card or debit card list 
 	if (boolCredit) {
 	    // Since the list is static, we can directly access it using the class name 
 	    CardsManager.listCreditCards.remove(bytCard);
