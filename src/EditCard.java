@@ -1,4 +1,5 @@
 import java.io.*; // Required for reading and writting to the file 
+import java.text.DecimalFormat; // required for rounding
 
 public class EditCard extends javax.swing.JFrame {
     
@@ -7,6 +8,9 @@ public class EditCard extends javax.swing.JFrame {
     public EditCard() {
 	initComponents();
     }
+    
+    // Create a decimal format 
+    DecimalFormat df = new DecimalFormat("0.00"); 
     
     // This boolean will hold whether the card currently being edited is a credit card or a debit card. 
     // If it is true, it is a credit card, and if it's false, it is a debit card 
@@ -127,8 +131,9 @@ public class EditCard extends javax.swing.JFrame {
         });
 
         lblDisplayOut.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
-        lblDisplayOut.setForeground(new java.awt.Color(153, 102, 0));
+        lblDisplayOut.setForeground(new java.awt.Color(0, 51, 102));
         lblDisplayOut.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDisplayOut.setToolTipText("");
 
         lblDetailHeader.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 24)); // NOI18N
         lblDetailHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -288,7 +293,7 @@ public class EditCard extends javax.swing.JFrame {
                                 .addComponent(lblRemove)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtRemove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                         .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblNewTitle)
                             .addComponent(txtNewBalance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -311,7 +316,7 @@ public class EditCard extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnlBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -322,8 +327,53 @@ public class EditCard extends javax.swing.JFrame {
 	lblDisplayOut.setText("");
 
 	// First, make sure that the inputs for "Add to Balance/Limit" and "Remove from Balance/Limit" aren't empty 
-	if (!txtAdd.getText().equals("") && !txtRemove.getText().equals("")) {
-	    
+	// The reason why I did "OR" and not "AND" is because it's fine if one of the values is blank. In fact, that's how it should be most of the time
+	if (!txtAdd.getText().equals("") || !txtRemove.getText().equals("")) {
+	    // Use a try and except to verify that the inputs are numbers 
+	    // If it errors, that means the inputs weren't fully numbers
+	    try {
+		// Declare and initialize variables
+		// The reason why I am setting them as 0 initially is because I want to diffrienciate between blank and not blank inputs
+		double dblAdd = 0, dblRemove = 0; 
+		
+		// Use if statements to know whether they are blank or not 
+		// We used Math.abs() to make sure the inputs are postive.
+		if (!txtAdd.getText().equals("")) {
+		    dblAdd = Math.abs(Double.parseDouble(txtAdd.getText()));
+		}
+		
+		if (!txtRemove.getText().equals("")) {
+		    dblRemove = Math.abs(Double.parseDouble(txtRemove.getText()));
+		}
+		
+		// Since all the values are verified, we can now edit the balance/limit depending on whether it is a credit or debit card.
+		// First, find the new balance
+		double dblNew = Double.parseDouble(CardsManager.listCreditCards.get(bytCard).getLimit()) + dblAdd - dblRemove;
+		
+		// Use an if statement to verify whether it is a debit or credit card to know which list to edit, and then change the GUI 
+		if (boolCredit) {
+		    // Change the balance using the given values
+		    CardsManager.listCreditCards.get(bytCard).setLimit(df.format(dblNew));
+		    
+		    // Set the text in the GUI 
+		    txtNewBalance.setText(CardsManager.listCreditCards.get(bytCard).getLimit());
+		} else {
+		    // Change the balance using the given values
+		    CardsManager.listDebitCards.get(bytCard).setLimit(df.format(dblNew));
+		    
+		    // Set the text in the GUI 
+		    txtNewBalance.setText(CardsManager.listDebitCards.get(bytCard).getBalance());
+		}
+		
+		// Finally, clear all the textspace other than the new balance, and set a message that the new balance/limit was created. 
+		lblDisplayOut.setText("Changes Saved!");
+		txtBalance.setText("");
+		txtAdd.setText("");
+		txtRemove.setText(""); 
+		
+	    } catch (NumberFormatException e) { // Display the error if it occurs in the allocated textspace
+		lblDisplayOut.setText("ERROR: Please make sure the inputs are only numbers (NO OTHER CHARACTERS!)");
+	    }
 	} else {
 	    lblDisplayOut.setText("ERROR: Make sure your inputs aren't blank!");
 	}
