@@ -356,13 +356,13 @@ public class EditCard extends javax.swing.JFrame {
 		    CardsManager.listCreditCards.get(bytCard).setLimit(df.format(dblNew));
 		    
 		    // Set the text in the GUI 
-		    txtNewBalance.setText(CardsManager.listCreditCards.get(bytCard).getLimit());
+		    txtNewBalance.setText("$" + CardsManager.listCreditCards.get(bytCard).getLimit());
 		} else {
 		    // Change the balance using the given values
 		    CardsManager.listDebitCards.get(bytCard).setLimit(df.format(dblNew));
 		    
 		    // Set the text in the GUI 
-		    txtNewBalance.setText(CardsManager.listDebitCards.get(bytCard).getBalance());
+		    txtNewBalance.setText("$" + CardsManager.listDebitCards.get(bytCard).getBalance());
 		}
 		
 		// Finally, clear all the textspace other than the new balance, and set a message that the new balance/limit was created. 
@@ -370,6 +370,9 @@ public class EditCard extends javax.swing.JFrame {
 		txtBalance.setText("");
 		txtAdd.setText("");
 		txtRemove.setText(""); 
+		
+		// Write to the file now that the changes have been made
+		CardsManager.writeToFile(boolCredit); 
 		
 	    } catch (NumberFormatException e) { // Display the error if it occurs in the allocated textspace
 		lblDisplayOut.setText("ERROR: Please make sure the inputs are only numbers (NO OTHER CHARACTERS!)");

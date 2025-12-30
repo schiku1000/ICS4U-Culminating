@@ -1,12 +1,16 @@
+import java.text.DecimalFormat; // required for rounding
+
 public class AddCard extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CardsManager.class.getName());
-
 
     public AddCard() {
 	initComponents();
     }
 
+    // Create a decimal format 
+    DecimalFormat df = new DecimalFormat("0.00"); 
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -222,74 +226,140 @@ public class AddCard extends javax.swing.JFrame {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
 	/** 
 	 * Make sure hte crdit card number isnt a dupe 
-	 * Make sure the name is a string with letters only, with at least 2 seperate strings
-	 * make sure CVV, balance, and card number are numbers
-	 * make sure cvv is either 3 or 4 numbers (less than 9999 ) 
-	 *    -->  maybe turn it into a list or smt and find the length
-	 * make sure a radio button is clicked for credit or debit
 	 * capitalize name, bank
 	 * for date, make sure the / is element 2 of the 5 character array (turn the str into a list)
 	 *   --> use a switch statement for all the months, and then make the year be between 26 and 30 (credit/debit cards expire within 5 years)
-	 * MAKE SURE to account for either debit or credit being max (check size) 
 	 */
-
-	// #1: Create boolean variables which will save whether the current inputs are valid or invalid 
-	// boolNameValid makes sure the name consists of only letters, and at least has 2 seperate strings (to signify first and last name) 
-	// boolCard makes sure the Card # is not a duplicate, and only consists of numbers
-	// boolBankValid will make sure the bank inputted/card issuer's name only consists of letters
-	// boolTypeValid will make sure that either the Debit or Credit radio button was selected, and that they aren't at their max capacity
-	// boolCVV will make sure the CVV is all numbers, and that it is either 3 or 4 numbers long
-	// boolDateValid will make sure the expiry date is valid (Make sure the month is less than 12, and that the expiry year is between 2026 - 2030)
-	boolean boolNameValid = true, boolCardValid = true, boolBankValid = true, boolTypeValid = true, boolCVV = true, boolDateValid = false; 
 	
 	// Create another boolean to save whether it is a credit card or debit card being added
 	boolean boolCredit;
 	
-	// #2: Create a string variable for every input (except card type)  
+	// First check: Create a string variable for every input (except card type)  
 	// 7 total values
 	String strName = txtName.getText().trim(); // CAPITALIZE LATER
 	String strBalance = txtLimit.getText().trim(); 
 	String strBank = txtBank.getText().trim(); // CAPITALIZE LATER
 	String strNumber = txtNumber.getText().trim(); 
-	String strCVV = txtCVV.getText().trim();
-	String strDate = txtDate.getText().trim(); 
+	String strCVV = txtCVV.getText().trim(); 
+	String strDate = txtDate.getText().trim().replace("/", ""); // Replace the dash with nothing (I want the input to only be numbers for the checks) 
 	
 	// First check, make sure values aren't blank
+	if (strName.equals("") || strBalance.equals("") || strBank.equals("") || strNumber.equals("") || strCVV.equals("") || strDate.equals("")) {
+	    lblDisplayError.setText("ERROR: Please make sure none of your inputs are blank!");
+	    return; // break out of the function
+	}
 	
-	// Surround the entire verifying process in a while loop to break out of the loop if it ever errors
-	// This will allow easy error handling. 
-	while(true) {
-	    // Make sure the type was selected/is valid
-	    // Use an if-else statement to find out whether it is a credit or debit card 
-	    if (btnGrp.getSelection() == btnCredit && CardsManager.listCreditCards.size() < 3) {
-		boolCredit = true; 
-	    } else if (btnGrp.getSelection() == btnDebit && CardsManager.listDebitCards.size() < 3) {
-		boolCredit = false; 
-	    } else { // This means either they didn't choose whether it's a credit or debit card, OR it is at its max, so it is INVALID. 
-		boolTypeValid = false; // set the validity as false
-		break; // break out of the loop 
+	int intSpaceCounter = 0; // this is the counter we will be using to count the number of spaces in the name 
+	// Second check: Make sure the inputted name & card issuer name only consists of letters, and that the name has a space in it (to signify first and last name) 
+	// Do not add a limit to spaces because they could have multiple "middle" names. 
+	// Also allow dashes for those who have a joint last name (e.g. Johnson-Smith)
+	// Basically, this for loop just makes sure that every single character is a valid English letter by checking if the index of the character within a string consisting of all English letters is not -1. 
+	for (int i = 0; i < strName.length(); i++) {
+	    // This first if statement will make sure the name only consists of English characters. 
+	    if ("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ- ".indexOf(strName.charAt(i)) < 0) {
+		lblDisplayError.setText("ERROR: Please make sure the inputted name only has english characters!");
+		return; // break out of the function
 	    }
 	    
-	    // Now that everything has been verified, add the new card to the list, then write to the file. 
-	    
-	    break; // break out of the loop since it is now complete
+	    // This second if statement will count the number of spaces.
+	    if (strName.charAt(i) == ' ') {
+		intSpaceCounter++; // Add one to the space counter 
+	    }
 	}
 	
-	// All the different error messages
-	// These are all customized to tell the user WHICH input specifically is causing the error
-	if (!boolTypeValid) {
-	    lblDisplayError.setText("ERROR: Make sure the type of card is selected, and it is not at max (3 cards per type)!"); 
-	} else if (!boolNameValid) {
-	    lblDisplayError.setText("ERROR: Make sure your name only consists of English Letters)!"); 
-	} else if (!boolCardValid) {
-	    lblDisplayError.setText("ERROR: Make sure your card number is NOT a duplicate, and only consists of numbers!"); 
-	} else if (!boolBankValid) {
-	    lblDisplayError.setText("ERROR: Make sure your card issuer's name only consists of English Letters)!"); 
-	} else if (!boolDateValid) {
-	    lblDisplayError.setText("ERROR: Make sure your date is in the given format, and that your expiry year is valid (Between 2026 - 2030)!");
-	} else if (!boolCVV) {
-	    lblDisplayError.setText("ERROR: Make sure your CVV is either 3 - 4 characters, and only numbers!"); 
+	// Now, make sure the name has more than one space
+	if (intSpaceCounter < 1) {
+	    lblDisplayError.setText("ERROR: Please make sure you input your full legal name (not just first name)!"); 
+	    return; // break out of the function
 	}
+	
+	// Do the same for loop again (without the space requirement) for the bank name
+	for (int i = 0; i < strBank.length(); i++) {
+	    // This if statement will make sure the card issuer name only consists of English characters. 
+	    if ("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-".indexOf(strName.charAt(i)) < 0) {
+		lblDisplayError.setText("ERROR: Please make sure the inputted name only has english characters!");
+		return; // break out of the function
+	    }
+	}
+	
+	// Third check: Make sure all the number values are the proper types (e.g. strNumber can be parsed into a double; doesn't have dollar sign) 
+	try {
+	    // To do this, try parsing them into either a double, or an integer!
+	    // If they fail, that would mean that they do not only have number characters!
+	    Integer.valueOf(strCVV); 
+	    Long.valueOf(strNumber);
+	    Integer.valueOf(strDate); 
+	    Double.valueOf(strBalance); 
+	    
+	    // Make sure the CVV is 3 - 4 characters
+	    if (strCVV.length() < 3 || strCVV.length() > 4) {
+		lblDisplayError.setText("ERROR: Please make sure your CVV is 3 - 4 numbers long!"); 
+		return; // break out of the method 
+	    }
+	    
+	    // Make sure the card number is between 15 - 19 numbers long (found this via researching) 
+	    if (strNumber.length() < 15 || strNumber.length() > 19 ) {
+		lblDisplayError.setText("ERROR: Please make sure your card # is 15 - 19 numbers long!"); 
+		return; // break out of the method 
+	    }
+	    
+	} catch (NumberFormatException e ) { // If it fails turning the strings into numbers: 
+	    lblDisplayError.setText("ERROR: Make sure your CVV, balance, expiry date, and card # only consist of numbers!");
+	    return; // break out of the method
+	}
+
+	// Fourth check: Make sure the type was selected/is valid
+	// Use an if-else statement to find out whether it is a credit or debit card 
+	if (btnCredit.isSelected() && CardsManager.listCreditCards.size() < 3) {
+	    boolCredit = true; 
+	} else if (btnDebit.isSelected() && CardsManager.listDebitCards.size() < 3) {
+	    boolCredit = false; 
+	} else { // This means either they didn't choose whether it's a credit or debit card, OR it is at its max, so it is INVALID. 
+	    lblDisplayError.setText("ERROR: Please make sure you select a card type, and that there are less than 3 of that type!"); 
+	    return; // break out of the loop 
+	}
+	    
+	// Fifth check: Make sure the inputted card number is NOT a duplicate 
+	// We made sure to check both the debit and credit card lists!
+	// Use a for loop to iterate through the lists of credit cards
+	for (int i = 0; i < CardsManager.listCreditCards.size(); i++) {
+	    if (strNumber.equals(CardsManager.listCreditCards.get(i).getNumber())) {
+		lblDisplayError.setText("ERROR: Card already added (Same card #)!"); 
+		return; // break out of the method.
+	    }
+	}
+	
+	// Use a for loop to iterate through the lists of debit cards
+	for (int i = 0; i < CardsManager.listDebitCards.size(); i++) {
+	    if (strNumber.equals(CardsManager.listDebitCards.get(i).getNumber())) {
+		lblDisplayError.setText("ERROR: Card already added (Same card #)!"); 
+		return; // break out of the method.
+	    }
+	}
+	
+	// Sixth and final check: Make sure that the date inputted for the expiry is valid 
+	// First, make sure the length is 4 using an if statement, otherwise there's no need for other checks
+	// Also make sure that the year inputted is between 26 and 30 (2026 and 2030)
+	if (strDate.length() != 4 && (Integer.parseInt(strDate.substring(3)) < 26 || Integer.parseInt(strDate.substring(3)) > 30 )) {
+	    lblDisplayError.setText("ERROR: Make sure the date inputted is in the proper format, and that your expiry year is valid (Between 2026 - 2030)!!");
+	    return; // break out of the method 
+	} 
+	
+	// Now that everything has been verified, add the new card to the list, then write to the file. 
+	// Use the boolean we created earlier to know whether it is a credit or debit card
+	if (boolCredit) {
+	    CardsManager.listCreditCards.add(new CreditCard(strName, strBank, strNumber, strDate.substring(0, 2) + "/" + strDate.substring(3), Short.parseShort(strCVV), df.format(Double.parseDouble(strBalance))));
+	} else {
+	    CardsManager.listDebitCards.add(new DebitCard(strName, strBank, strNumber, strDate.substring(0, 2) + "/" + strDate.substring(3), Short.parseShort(strCVV), df.format(Double.parseDouble(strBalance))));
+	}
+	
+	// Write to the file 
+	CardsManager.writeToFile(boolCredit);
+	
+	// Finally, go back to cards manager
+	this.dispose(); // dispose the current screen
+	CardsManager screen = new CardsManager(); 
+	screen.setVisible(true); // make the new screen visible
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
