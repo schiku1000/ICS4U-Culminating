@@ -227,6 +227,7 @@ public class CardsManager extends javax.swing.JFrame {
         lblCreditTitle = new javax.swing.JLabel();
         lblDebitTitle = new javax.swing.JLabel();
         lblDisplayError = new javax.swing.JLabel();
+        btnLoans = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -311,6 +312,15 @@ public class CardsManager extends javax.swing.JFrame {
         lblDisplayError.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblDisplayError.setToolTipText("");
 
+        btnLoans.setBackground(new java.awt.Color(153, 153, 255));
+        btnLoans.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
+        btnLoans.setText("Check Loans");
+        btnLoans.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoansActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlBackgroundLayout = new javax.swing.GroupLayout(pnlBackground);
         pnlBackground.setLayout(pnlBackgroundLayout);
         pnlBackgroundLayout.setHorizontalGroup(
@@ -329,12 +339,18 @@ public class CardsManager extends javax.swing.JFrame {
                     .addComponent(btnCredit1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCredit3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblCreditTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 238, Short.MAX_VALUE)
-                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnDebit2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDebit1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDebit3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDebitTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 238, Short.MAX_VALUE)
+                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnDebit2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnDebit1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblDebitTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(btnLoans, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnDebit3, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(100, 100, 100))
             .addGroup(pnlBackgroundLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
@@ -371,6 +387,8 @@ public class CardsManager extends javax.swing.JFrame {
                     .addComponent(btnDebit3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(lblDisplayError)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnLoans)
                 .addGap(12, 12, 12))
         );
 
@@ -382,7 +400,7 @@ public class CardsManager extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlBackground, javax.swing.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
+            .addComponent(pnlBackground, javax.swing.GroupLayout.DEFAULT_SIZE, 653, Short.MAX_VALUE)
         );
 
         pack();
@@ -537,6 +555,16 @@ public class CardsManager extends javax.swing.JFrame {
 	screen.setVisible(true);
     }//GEN-LAST:event_btnDebit3ActionPerformed
 
+    private void btnLoansActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoansActionPerformed
+        // Switch to the LoansManager screen
+        this.dispose(); // Clear the current screen
+        
+        // Make a new variable to hold the screen object 
+        LoanManager screen = new LoanManager(); 
+        
+        screen.setVisible(true); 
+    }//GEN-LAST:event_btnLoansActionPerformed
+
     public static void main(String args[]) {
 	/* Set the Nimbus look and feel */
 	//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -567,6 +595,7 @@ public class CardsManager extends javax.swing.JFrame {
     private javax.swing.JButton btnDebit1;
     private javax.swing.JButton btnDebit2;
     private javax.swing.JButton btnDebit3;
+    private javax.swing.JButton btnLoans;
     private javax.swing.JLabel lblCreditTitle;
     private javax.swing.JLabel lblDebitTitle;
     private javax.swing.JLabel lblDisplayError;
