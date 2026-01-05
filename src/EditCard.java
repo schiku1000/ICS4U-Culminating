@@ -397,21 +397,24 @@ public class EditCard extends javax.swing.JFrame {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // clear textspace
 	lblDisplayOut.setText("");
+        
+        // Put this all around a try and except to account for all errors:
+        try {
+            // Use the boolean we saved earlier to know whether to delete from credit card or debit card list 
+            if (boolCredit) {
+                // Since the list is static, we can directly access it using the class name 
+                CardsManager.listCreditCards.remove(bytCard);
+            } else {
+                // Since the list is static, we can directly access it using the class name 
+                CardsManager.listDebitCards.remove(bytCard);
+            }
 
-	// Use the boolean we saved earlier to know whether to delete from credit card or debit card list 
-	if (boolCredit) {
-	    // Since the list is static, we can directly access it using the class name 
-	    CardsManager.listCreditCards.remove(bytCard);
-	} else {
-	    // Since the list is static, we can directly access it using the class name 
-	    CardsManager.listDebitCards.remove(bytCard);
-	}
-	
-	// Run the custom function to write to the file 
-	CardsManager.writeToFile(boolCredit); 
-	
-	// Edit the GUI to show it's been deleted
-	lblDisplayOut.setText("Card has been successfully deleted.");
+            // Run the custom function to write to the file 
+            CardsManager.writeToFile(boolCredit); 
+
+            // Edit the GUI to show it's been deleted
+            lblDisplayOut.setText("Card has been successfully deleted.");
+        } catch (Exception e) {}
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     public static void main(String args[]) {
