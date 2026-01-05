@@ -278,9 +278,7 @@ public class LoanManager extends javax.swing.JFrame {
             }
             
             br.close();
-        } catch (Exception e) {
-            // do absolutely nothing
-        }
+        } catch (Exception e) {} // (how exception happens) 
     }
     
     // refresh the loans list display
