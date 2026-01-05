@@ -395,9 +395,6 @@ public class EditCard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // clear textspace
-	lblDisplayOut.setText("");
-        
         // Put this all around a try and except to account for all errors:
         try {
             // Use the boolean we saved earlier to know whether to delete from credit card or debit card list 
@@ -412,6 +409,15 @@ public class EditCard extends javax.swing.JFrame {
             // Run the custom function to write to the file 
             CardsManager.writeToFile(boolCredit); 
 
+            // Clear the textspace 
+            txtName.setText(""); 
+            txtBank.setText("");
+            txtNumber.setText("");
+            txtDate.setText(""); 
+            txtCVV.setText(""); 
+            txtBalance.setText(""); 
+            txtCardType.setText("");
+            
             // Edit the GUI to show it's been deleted
             lblDisplayOut.setText("Card has been successfully deleted.");
         } catch (Exception e) {}
