@@ -313,7 +313,7 @@ public class AddCard extends javax.swing.JFrame {
 	// Do the same for loop again (without the space requirement) for the bank name
 	for (int i = 0; i < strBank.length(); i++) {
 	    // This if statement will make sure the card issuer name only consists of English characters. 
-	    if ("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ- ".indexOf(strName.charAt(i)) < 0) {
+	    if ("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ- ".indexOf(strBank.charAt(i)) < 0) {
 		lblDisplayError.setText("ERROR: Please make sure the inputted card issuer name only has english characters!");
 		return; // break out of the function
 	    }
