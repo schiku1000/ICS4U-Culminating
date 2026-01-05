@@ -224,21 +224,14 @@ public class AddCard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-	/** 
-	 * Make sure hte crdit card number isnt a dupe 
-	 * capitalize name, bank
-	 * for date, make sure the / is element 2 of the 5 character array (turn the str into a list)
-	 *   --> use a switch statement for all the months, and then make the year be between 26 and 30 (credit/debit cards expire within 5 years)
-	 */
-	
 	// Create another boolean to save whether it is a credit card or debit card being added
 	boolean boolCredit;
 	
 	// First check: Create a string variable for every input (except card type)  
 	// 7 total values
-	String strName = txtName.getText().trim(); // CAPITALIZE LATER
+	String strName = txtName.getText().trim(); 
 	String strBalance = txtLimit.getText().trim(); 
-	String strBank = txtBank.getText().trim(); // CAPITALIZE LATER
+	String strBank = txtBank.getText().trim();
 	String strNumber = txtNumber.getText().trim(); 
 	String strCVV = txtCVV.getText().trim(); 
 	String strDate = txtDate.getText().trim().replace("/", ""); // Replace the dash with nothing (I want the input to only be numbers for the checks) 
@@ -249,10 +242,54 @@ public class AddCard extends javax.swing.JFrame {
 	    return; // break out of the function
 	}
 	
-	int intSpaceCounter = 0; // this is the counter we will be using to count the number of spaces in the name 
-	// Second check: Make sure the inputted name & card issuer name only consists of letters, and that the name has a space in it (to signify first and last name) 
+	// This section is not a check, it just makes sure the name and card issuer are capitalized. 
+	// We will do this using a temporary string value, and a temporary boolean to know whether it is the first letter or not 
+	boolean boolFirstLetter = true; 
+	String strTempName = "";
+	
+	// Create a for loop to iterate through the name, and capitalize
+	for (int i = 0; i < strName.length(); i++) {
+	    if (strName.charAt(i) != ' ') {
+		if (boolFirstLetter) { // if it is the first letter 
+		    strTempName += Character.toString(strName.charAt(i)).toUpperCase(); // Add the character to the string (must parse first, and capitalize it) 
+		    boolFirstLetter = false; // Set the boolean as false now as it is no longer the first letter of the word 
+		} else {
+		    strTempName += Character.toString(strName.charAt(i)); // Add the character to the string (must parse first) 
+		}
+	    } else {
+		strTempName += " "; // add a space to the name 
+		boolFirstLetter = true; // set the first letter boolean as true as it is now moving onto the next word 
+	    }
+	}
+	
+	strName = strTempName; // Replace the strName with the new edited name 
+	
+	// Reset the variables for the bank name check again, then use the same logic again 
+	boolFirstLetter = true; 
+	strTempName = "";
+	
+	// Create a for loop to iterate through the name, and capitalize
+	for (int i = 0; i < strBank.length(); i++) {
+	    if (strBank.charAt(i) != ' ') {
+		if (boolFirstLetter) { // if it is the first letter 
+		    strTempName += Character.toString(strBank.charAt(i)).toUpperCase(); // Add the character to the string (must parse first, and capitalize it) 
+		    boolFirstLetter = false; // Set the boolean as false now as it is no longer the first letter of the word 
+		} else {
+		    strTempName += Character.toString(strBank.charAt(i)); // Add the character to the string (must parse first) 
+		}
+	    } else {
+		strTempName += " "; // add a space to the name 
+		boolFirstLetter = true; // set the first letter boolean as true as it is now moving onto the next word 
+	    }
+	}
+	
+	strBank = strTempName; // Replace the strBank with the new edited card issuer name  
+	
+	// Second Check: Make sure the inputted name & card issuer name only consists of letters, and that the name has a space in it (to signify first and last name) 
 	// Do not add a limit to spaces because they could have multiple "middle" names. 
 	// Also allow dashes for those who have a joint last name (e.g. Johnson-Smith)
+	int intSpaceCounter = 0; // this is the counter we will be using to count the number of spaces in the name 
+	
 	// Basically, this for loop just makes sure that every single character is a valid English letter by checking if the index of the character within a string consisting of all English letters is not -1. 
 	for (int i = 0; i < strName.length(); i++) {
 	    // This first if statement will make sure the name only consists of English characters. 
@@ -276,8 +313,8 @@ public class AddCard extends javax.swing.JFrame {
 	// Do the same for loop again (without the space requirement) for the bank name
 	for (int i = 0; i < strBank.length(); i++) {
 	    // This if statement will make sure the card issuer name only consists of English characters. 
-	    if ("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-".indexOf(strName.charAt(i)) < 0) {
-		lblDisplayError.setText("ERROR: Please make sure the inputted name only has english characters!");
+	    if ("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ- ".indexOf(strName.charAt(i)) < 0) {
+		lblDisplayError.setText("ERROR: Please make sure the inputted card issuer name only has english characters!");
 		return; // break out of the function
 	    }
 	}

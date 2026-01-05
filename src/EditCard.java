@@ -20,6 +20,9 @@ public class EditCard extends javax.swing.JFrame {
     // E.g. Credit Card #2 would have 2 saved here. 
     byte bytCard; 
     
+    // This boolean will make sure that once a card is deleted, it will not be allowed to be deleted again 
+    boolean boolCardDeleted = false; 
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -395,23 +398,43 @@ public class EditCard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // clear textspace
-	lblDisplayOut.setText("");
+        // Make sure that the card has not been deleted before using an if statement 
+        if (!boolCardDeleted) {
+            // Put this all around a try and except to account for all errors:
+            try {
+                // Use the boolean we saved earlier to know whether to delete from credit card or debit card list 
+                if (boolCredit) {
+                    // Since the list is static, we can directly access it using the class name 
+                    CardsManager.listCreditCards.remove(bytCard);
+                } else {
+                    // Since the list is static, we can directly access it using the class name 
+                    CardsManager.listDebitCards.remove(bytCard);
+                }
 
-	// Use the boolean we saved earlier to know whether to delete from credit card or debit card list 
-	if (boolCredit) {
-	    // Since the list is static, we can directly access it using the class name 
-	    CardsManager.listCreditCards.remove(bytCard);
-	} else {
-	    // Since the list is static, we can directly access it using the class name 
-	    CardsManager.listDebitCards.remove(bytCard);
-	}
-	
-	// Run the custom function to write to the file 
-	CardsManager.writeToFile(boolCredit); 
-	
-	// Edit the GUI to show it's been deleted
-	lblDisplayOut.setText("Card has been successfully deleted.");
+                // Run the custom function to write to the file 
+                CardsManager.writeToFile(boolCredit); 
+
+                // Clear the textspace 
+                txtName.setText(""); 
+                txtBank.setText("");
+                txtNumber.setText("");
+                txtDate.setText(""); 
+                txtCVV.setText(""); 
+                txtBalance.setText(""); 
+                txtCardType.setText("");
+
+                // Edit the GUI to show it's been deleted
+                lblDisplayOut.setText("Card has been successfully deleted.");
+                
+                // Set the boolean of card deleted as true 
+                boolCardDeleted = true; 
+
+            } catch (Exception e) {}
+            
+        
+        } else { // If a card HAS been deleted in this instance, don't do anything
+            lblDisplayOut.setText("");
+        } 
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     public static void main(String args[]) {
