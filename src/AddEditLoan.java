@@ -19,6 +19,14 @@ public class AddEditLoan extends javax.swing.JFrame {
         trackedLoans = new ArrayList<>();
         loanNames = new ArrayList<>();
         loanCards = new ArrayList<>();
+       
+        try {
+            java.io.File file = new java.io.File("Loans.txt");
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+        } catch (Exception e) {}
+        
         
         populateCardDropdowns();
         loadLoansFromFile();

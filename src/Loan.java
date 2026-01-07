@@ -5,6 +5,7 @@ public class Loan {
     private double dblPrincipal;
     private double dblInterestRate;
     private int intTermMonths;
+    private int intRemainingMonths;
     private double dblPayment;
     private double dblRemainingBalance;
     private static final DecimalFormat format = new DecimalFormat("###.##");
@@ -14,6 +15,7 @@ public class Loan {
         this.dblPrincipal = dblPrincipal;
         this.dblInterestRate = dblInterestRate;
         this.intTermMonths = intTermMonths;
+        this.intRemainingMonths = intTermMonths;
         this.dblRemainingBalance = dblPrincipal;
         calculateMonthlyPayment();
     }
@@ -45,6 +47,12 @@ public class Loan {
                 double dblPrincipalPortion = dblPayment - dblInterestPortion;
                 dblRemainingBalance -= dblPrincipalPortion;
                 
+
+                // Decrease remaining months
+                if (intRemainingMonths > 0) {
+                    intRemainingMonths--;
+                }
+                
                 return true;
             }
         } else if (account instanceof CreditCard) {
@@ -60,6 +68,11 @@ public class Loan {
                 double dblInterestPortion = dblRemainingBalance * dblMonthlyRate;
                 double dblPrincipalPortion = dblPayment - dblInterestPortion;
                 dblRemainingBalance -= dblPrincipalPortion;
+                
+                // Decrease remaining months
+                if (intRemainingMonths > 0) {
+                    intRemainingMonths--;
+                }
                 
                 return true;
             }
@@ -89,7 +102,7 @@ public class Loan {
     }
     
     public int getTermMonths() {
-        return intTermMonths;
+        return intRemainingMonths;
     }
     
     public double getMonthlyPayment() {

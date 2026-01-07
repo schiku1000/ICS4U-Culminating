@@ -28,6 +28,14 @@ public class LoanManager extends javax.swing.JFrame {
      */
     public LoanManager() {
         initComponents();
+        
+
+        try {
+            java.io.File file = new java.io.File("Loans.txt");
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+        } catch (Exception e) {}
 
         trackedLoans = new ArrayList<>();
         loanNames = new ArrayList<>();
