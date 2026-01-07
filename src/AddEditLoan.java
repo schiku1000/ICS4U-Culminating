@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.text.DecimalFormat;
 
 public class AddEditLoan extends javax.swing.JFrame {
     
@@ -7,6 +8,8 @@ public class AddEditLoan extends javax.swing.JFrame {
     private ArrayList<String> loanNames;
     private ArrayList<String> loanCards;
     private int intSelectedEditIndex = -1;
+    
+    private static final DecimalFormat format = new DecimalFormat("###.##");
     
     /**
      * Creates new form AddEditLoan
@@ -423,7 +426,7 @@ public class AddEditLoan extends javax.swing.JFrame {
             loanArray = new String[trackedLoans.size()];
             for (int i = 0; i < trackedLoans.size(); i++) {
                 Loan loan = trackedLoans.get(i);
-                loanArray[i] = loanNames.get(i) + " - $" + String.format("%.2f", loan.getMonthlyPayment()) + "/month";
+                loanArray[i] = loanNames.get(i) + " - $" + format.format(loan.getMonthlyPayment()) + "/month";
             }
         }
         
@@ -459,7 +462,7 @@ public class AddEditLoan extends javax.swing.JFrame {
             String strName = txtLoanName.getText().trim();
             double dblBalance = Double.parseDouble(txtLoanAmount.getText());
             double dblRate = Double.parseDouble(txtInterestRate.getText());
-            int intMonths = Integer.parseInt(txtLoanTerm.getText());
+            int intMonths = (int) Double.parseDouble(txtLoanTerm.getText());    
             
             // Validate inputs
             if (strName.isEmpty()) {
@@ -516,7 +519,7 @@ public class AddEditLoan extends javax.swing.JFrame {
             String strName = txtEditName.getText().trim();
             double dblBalance = Double.parseDouble(txtEditAmount.getText());
             double dblRate = Double.parseDouble(txtEditRate.getText());
-            int intMonths = Integer.parseInt(txtEditTerm.getText());
+            int intMonths = (int) Double.parseDouble(txtEditTerm.getText());
             
             if (strName.isEmpty()) {
                 lblStatus.setText(" Please enter a loan strName!");

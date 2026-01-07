@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 public class Loan {
     
     // instance variables
@@ -6,6 +7,7 @@ public class Loan {
     private int intTermMonths;
     private double dblPayment;
     private double dblRemainingBalance;
+    private static final DecimalFormat format = new DecimalFormat("###.##");
     
     // constructor
     public Loan(double dblPrincipal, double dblInterestRate, int intTermMonths) {
@@ -35,7 +37,7 @@ public class Loan {
             
             if (dblCurrentBalance >= dblPayment) {
                 dblCurrentBalance -= dblPayment;
-                debitCard.setLimit(String.format("%.2f", dblCurrentBalance));
+                debitCard.setLimit(format.format(dblCurrentBalance));
                 
                 // Update remaining loan balance
                 double dblMonthlyRate = dblInterestRate / 12 / 100;
@@ -47,11 +49,11 @@ public class Loan {
             }
         } else if (account instanceof CreditCard) {
             CreditCard creditCard = (CreditCard) account;
-            double currentLimit = Double.parseDouble(creditCard.getLimit());
+            double dblCurrentLimit = Double.parseDouble(creditCard.getLimit());
             
-            if (currentLimit >= dblPayment) {
-                currentLimit -= dblPayment;
-                creditCard.setLimit(String.format("%.2f", currentLimit));
+            if (dblCurrentLimit >= dblPayment) {
+                dblCurrentLimit -= dblPayment;
+                creditCard.setLimit(format.format(dblCurrentLimit));
                 
                 // update remaining loan balance
                 double dblMonthlyRate = dblInterestRate / 12 / 100;

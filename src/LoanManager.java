@@ -9,7 +9,7 @@
  */
 
 import java.util.ArrayList;
-
+import java.text.DecimalFormat;
 public class LoanManager extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(LoanManager.class.getName());
@@ -20,6 +20,8 @@ public class LoanManager extends javax.swing.JFrame {
     private Loan selectedLoan;
     private Card selectedCard;
     private int intSelectedEditIndex = -1;
+    
+    private static final DecimalFormat format = new DecimalFormat("###.##");
     
     /**
      * Creates new form LoanCalculator
@@ -290,8 +292,7 @@ public class LoanManager extends javax.swing.JFrame {
             loanArray = new String[trackedLoans.size()];
             for (int i = 0; i < trackedLoans.size(); i++) {
                 Loan loan = trackedLoans.get(i);
-                loanArray[i] = loanNames.get(i) + " - $" + loan.getMonthlyPayment() + "/month (" + loan.getTermMonths() + " months left)";
-            }
+                loanArray[i] = loanNames.get(i) + " - $" + format.format(loan.getMonthlyPayment()) + "/month (" + loan.getTermMonths() + " months left)";            }
         }
         
         lstLoans.setListData(loanArray);
@@ -374,7 +375,7 @@ public class LoanManager extends javax.swing.JFrame {
             
             // update remaining balance display
             lblRemainingBalance.setText("Remaining Balance: $" + 
-                String.format("%.2f", selectedLoan.getRemainingBalance()));
+                format.format(selectedLoan.getRemainingBalance()));
             
             // save updated loan
             saveLoansToFile();
@@ -383,7 +384,7 @@ public class LoanManager extends javax.swing.JFrame {
             refreshLoansList();
             
             lblStatus.setText("Payment of $" + 
-                String.format("%.2f", selectedLoan.getMonthlyPayment()) + " applied!");
+                format.format(selectedLoan.getMonthlyPayment()) + " applied!");
         } else {
             lblStatus.setText(" Payment failed!");
         }
@@ -406,9 +407,9 @@ public class LoanManager extends javax.swing.JFrame {
         // display loan details
         lblLoanName.setText("Loan: " + loanNames.get(intSelectedEditIndex));
         lblRemainingBalance.setText("Remaining Balance: $" + 
-            String.format("%.2f", selectedLoan.getRemainingBalance()));
+            format.format(selectedLoan.getRemainingBalance()));
         lblTotalInterest.setText("Total Interest Left: $" + 
-            String.format("%.2f", selectedLoan.getTotalInterest()));
+            format.format(selectedLoan.getTotalInterest()));
         
         if (selectedCard != null) {
             lblCardUsed.setText("Paying from: " + selectedCard.getName());
