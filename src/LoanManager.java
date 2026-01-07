@@ -269,28 +269,37 @@ public class LoanManager extends javax.swing.JFrame {
         trackedLoans.clear();
         loanNames.clear();
         loanCards.clear();
-        
+
         try {
             java.io.BufferedReader br = new java.io.BufferedReader(new java.io.FileReader("Loans.txt"));
-            String line;
-            
-            while ((line = br.readLine()) != null) {
-                String strName = line;
+            String strLine;
+
+            while ((strLine = br.readLine()) != null) {
+                String strName = strLine;
                 double dblPrincipal = Double.parseDouble(br.readLine());
                 double dblRate = Double.parseDouble(br.readLine());
                 int intMonths = Integer.parseInt(br.readLine());
                 String strCardNum = br.readLine();
-                
-                Loan loan = new Loan(dblPrincipal, dblRate, intMonths);
-                trackedLoans.add(loan);
-                loanNames.add(strName);
-                loanCards.add(strCardNum);
+
+                // check if the card still exists
+                Card card = findCardByNumber(strCardNum);
+
+                // only add loan if card still exists
+                if (card != null) {
+                    Loan loan = new Loan(dblPrincipal, dblRate, intMonths);
+                    trackedLoans.add(loan);
+                    loanNames.add(strName);
+                    loanCards.add(strCardNum);
+                }
             }
-            
+
             br.close();
-        } catch (Exception e) {} // (how exception happens) 
+
+            // save the loans that still have details to the file (deletes loans that dont have a card anymore)
+            saveLoansToFile();
+
+        } catch (Exception e) {}
     }
-    
     // refresh the loans list display
     public void refreshLoansList() {
         String[] loanArray;
