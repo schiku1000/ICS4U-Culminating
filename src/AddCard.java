@@ -376,18 +376,18 @@ public class AddCard extends javax.swing.JFrame {
 	
 	// Sixth and final check: Make sure that the date inputted for the expiry is valid 
 	// First, make sure the length is 4 using an if statement, otherwise there's no need for other checks
-	// Also make sure that the year inputted is between 26 and 30 (2026 and 2030)
-	if (strDate.length() != 4 && (Integer.parseInt(strDate.substring(3)) < 26 || Integer.parseInt(strDate.substring(3)) > 30 )) {
-	    lblDisplayError.setText("ERROR: Make sure the date inputted is in the proper format, and that your expiry year is valid (Between 2026 - 2030)!!");
+	// Also make sure that the year inputted is between 26 and 30 (2026 and 2030), and that the months are from 01 - 12
+	if (strDate.length() != 4 || Integer.parseInt(strDate.substring(0, 2)) < 0 || Integer.parseInt(strDate.substring(0, 2)) > 12 || Integer.parseInt(strDate.substring(2)) < 26 || Integer.parseInt(strDate.substring(2)) > 30 ) {
+	    lblDisplayError.setText("ERROR: Make sure the expiry date is within 2030, and follows the format!");
 	    return; // break out of the method 
 	} 
 	
 	// Now that everything has been verified, add the new card to the list, then write to the file. 
 	// Use the boolean we created earlier to know whether it is a credit or debit card
 	if (boolCredit) {
-	    CardsManager.listCreditCards.add(new CreditCard(strName, strBank, strNumber, strDate.substring(0, 2) + "/" + strDate.substring(3), strCVV, df.format(Double.parseDouble(strBalance))));
+	    CardsManager.listCreditCards.add(new CreditCard(strName, strBank, strNumber, strDate.substring(0, 2) + "/" + strDate.substring(2), strCVV, df.format(Double.parseDouble(strBalance))));
 	} else {
-	    CardsManager.listDebitCards.add(new DebitCard(strName, strBank, strNumber, strDate.substring(0, 2) + "/" + strDate.substring(3), strCVV, df.format(Double.parseDouble(strBalance))));
+	    CardsManager.listDebitCards.add(new DebitCard(strName, strBank, strNumber, strDate.substring(0, 2) + "/" + strDate.substring(2), strCVV, df.format(Double.parseDouble(strBalance))));
 	}
 	
 	// Write to the file 
