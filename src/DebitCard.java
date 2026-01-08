@@ -4,8 +4,8 @@ public class DebitCard extends Card {
     private String strBalance; 
     
     // Constructor
-    public DebitCard(String strName, String strBank, String strNumber, String strExpiry, short srtCVV, String strBalance) {
-	super(strName, strBank, strNumber, strExpiry, srtCVV); 
+    public DebitCard(String strName, String strBank, String strNumber, String strExpiry, String strCVV, String strBalance) {
+	super(strName, strBank, strNumber, strExpiry, strCVV); 
 	this.strBalance = strBalance;
     }
     

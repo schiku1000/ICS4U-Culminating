@@ -6,15 +6,15 @@ public abstract class Card {
     private String strBank; 
     private String strNumber; 
     private String strExpiry; 
-    private short srtCVV; 
+    private String strCVV; 
 
     // Constructor 
-    public Card(String strName, String strBank, String strNumber, String strExpiry, short srtCVV) {
+    public Card(String strName, String strBank, String strNumber, String strExpiry, String strCVV) {
 	this.strName = strName;
 	this.strBank = strBank;
 	this.strNumber = strNumber;
 	this.strExpiry = strExpiry;
-	this.srtCVV = srtCVV;
+	this.strCVV = strCVV;
     }
     
     // Getter Methods 
@@ -34,8 +34,8 @@ public abstract class Card {
 	return strExpiry;
     }
 
-    public short getCVV() {
-	return srtCVV;
+    public String getCVV() {
+	return strCVV;
     }
    
     // toString() method

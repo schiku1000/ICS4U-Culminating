@@ -4,8 +4,8 @@ public class CreditCard extends Card {
     private String strLimit; 
     
     // Constructor
-    public CreditCard(String strName, String strBank, String strNumber, String strExpiry, short srtCVV, String strLimit) {
-	super(strName, strBank, strNumber, strExpiry, srtCVV); 
+    public CreditCard(String strName, String strBank, String strNumber, String strExpiry, String strCVV, String strLimit) {
+	super(strName, strBank, strNumber, strExpiry, strCVV); 
 	this.strLimit = strLimit;
     }
     

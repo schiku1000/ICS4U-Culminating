@@ -81,7 +81,7 @@ public class CardsManager extends javax.swing.JFrame {
 		
                 // add to the credit card list using the values we found in the for loop, and have saved in the array
                 // most of the values are string, but some like the CVV and Balance have to be in short/long form as they are numbers
-                listCreditCards.add(new CreditCard(strTemp[0], strTemp[1], strTemp[2], strTemp[3], Short.parseShort(strTemp[4]), df.format(dblLimit)));
+                listCreditCards.add(new CreditCard(strTemp[0], strTemp[1], strTemp[2], strTemp[3], strTemp[4], df.format(dblLimit)));
             }
             
             brCred.close(); // close the reader
@@ -111,7 +111,7 @@ public class CardsManager extends javax.swing.JFrame {
 				
 		// add to the debit card list using the values we found in the for loop, and have saved in the array
                 // most of the values are string, but some like the CVV and Balance have to be in short/long form as they are numbers
-                listDebitCards.add(new DebitCard(strTemp[0], strTemp[1], strTemp[2], strTemp[3], Short.parseShort(strTemp[4]), df.format(dblBalance)));
+                listDebitCards.add(new DebitCard(strTemp[0], strTemp[1], strTemp[2], strTemp[3], strTemp[4], df.format(dblBalance)));
 	    }
         
         } catch (IOException | NumberFormatException e) {}

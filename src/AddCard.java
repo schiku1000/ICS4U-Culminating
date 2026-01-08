@@ -385,9 +385,9 @@ public class AddCard extends javax.swing.JFrame {
 	// Now that everything has been verified, add the new card to the list, then write to the file. 
 	// Use the boolean we created earlier to know whether it is a credit or debit card
 	if (boolCredit) {
-	    CardsManager.listCreditCards.add(new CreditCard(strName, strBank, strNumber, strDate.substring(0, 2) + "/" + strDate.substring(3), Short.parseShort(strCVV), df.format(Double.parseDouble(strBalance))));
+	    CardsManager.listCreditCards.add(new CreditCard(strName, strBank, strNumber, strDate.substring(0, 2) + "/" + strDate.substring(3), strCVV, df.format(Double.parseDouble(strBalance))));
 	} else {
-	    CardsManager.listDebitCards.add(new DebitCard(strName, strBank, strNumber, strDate.substring(0, 2) + "/" + strDate.substring(3), Short.parseShort(strCVV), df.format(Double.parseDouble(strBalance))));
+	    CardsManager.listDebitCards.add(new DebitCard(strName, strBank, strNumber, strDate.substring(0, 2) + "/" + strDate.substring(3), strCVV, df.format(Double.parseDouble(strBalance))));
 	}
 	
 	// Write to the file 
