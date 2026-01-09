@@ -92,6 +92,20 @@ public class Loan {
         return false;
     }
     
+    // recursive function
+    public double calculateAccumulatedInterest(int intMonths) {
+        // base case
+        if (intMonths <= 0) {
+            return 0;
+        }
+        
+        double dblMonthlyRate = dblInterestRate / 12 / 100;
+        double dblInterestThisMonth = dblRemainingBalance * dblMonthlyRate;
+        
+        // recursive case
+        return dblInterestThisMonth + calculateAccumulatedInterest(intMonths - 1);   
+    }
+    
     // Getters
     public double getPrincipal() {
         return dblPrincipal;
