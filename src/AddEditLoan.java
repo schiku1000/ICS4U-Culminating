@@ -1,33 +1,33 @@
-import java.util.ArrayList;
+import java.util.ArrayList; // import everything needed
 import java.text.DecimalFormat;
 
 public class AddEditLoan extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(AddEditLoan.class.getName());
-    private ArrayList<Loan> trackedLoans;
+    private ArrayList<Loan> trackedLoans; // create arraylist and variables for the jframe
     private ArrayList<String> loanNames;
     private ArrayList<String> loanCards;
     private int intSelectedEditIndex = -1;
     
-    private static final DecimalFormat format = new DecimalFormat("###.##");
+    private static final DecimalFormat format = new DecimalFormat("###.##"); // format to use throughout the program
     
     /**
      * Creates new form AddEditLoan
      */
-    public AddEditLoan() {
+    public AddEditLoan() { // on launch
         initComponents();
-        trackedLoans = new ArrayList<>();
+        trackedLoans = new ArrayList<>(); // create arraylists
         loanNames = new ArrayList<>();
         loanCards = new ArrayList<>();
        
-        try {
+        try { // and create the file
             java.io.File file = new java.io.File("Loans.txt");
             if (!file.exists()) {
                 file.createNewFile();
             }
-        } catch (Exception e) {}
+        } catch (Exception e) {} // ignore if no file
         
-        
+        // call all helper functions
         populateCardDropdowns();
         loadLoansFromFile();
         refreshExistingLoansList();
@@ -366,69 +366,69 @@ public class AddEditLoan extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    // Load saved loans from file
+    // load saved loans from file
     private void loadLoansFromFile() {
-        trackedLoans.clear();
+        trackedLoans.clear(); // clear all array lists
         loanNames.clear();
         loanCards.clear();
         
         try {
-            java.io.BufferedReader br = new java.io.BufferedReader(
+            java.io.BufferedReader br = new java.io.BufferedReader( // read the file
                 new java.io.FileReader("Loans.txt")
             );
-            String line;
+            String strLine; 
             
-            while ((line = br.readLine()) != null) {
-                String strName = line;
-                double principal = Double.parseDouble(br.readLine());
+            while ((strLine = br.readLine()) != null) { // read all the data and store as variables
+                String strName = strLine;
+                double dblPrincipal = Double.parseDouble(br.readLine());
                 double dblRate = Double.parseDouble(br.readLine());
                 int intMonths = Integer.parseInt(br.readLine());
-                String cardNum = br.readLine();
+                String strCardNum = br.readLine();
                 
-                Loan loan = new Loan(principal, dblRate, intMonths);
-                trackedLoans.add(loan);
-                loanNames.add(strName);
-                loanCards.add(cardNum);
+                Loan loan = new Loan(dblPrincipal, dblRate, intMonths); // create a loan object
+                trackedLoans.add(loan); // add the loan to the list
+                loanNames.add(strName); // add the name to the list
+                loanCards.add(strCardNum); // add the card to the list
             }
             
-            br.close();
+            br.close(); // close the reader
         } catch (Exception e) {
             // no file
         }
     }
     
-    // Save all loans to file
+    // save all loans to file
     private void saveLoansToFile() {
         try {
             java.io.FileWriter fw = new java.io.FileWriter("Loans.txt");
             
-            for (int i = 0; i < trackedLoans.size(); i++) {
-                Loan loan = trackedLoans.get(i);
-                fw.write(loanNames.get(i) + "\n");
+            for (int i = 0; i < trackedLoans.size(); i++) { // for all the tracked loans
+                Loan loan = trackedLoans.get(i); // get the loan
+                fw.write(loanNames.get(i) + "\n"); // and write all the details
                 fw.write(loan.getPrincipal() + "\n");
                 fw.write(loan.getInterestRate() + "\n");
                 fw.write(loan.getTermMonths() + "\n");
                 fw.write(loanCards.get(i) + "\n");
             }
             
-            fw.close();
+            fw.close(); // close the writer
         } catch (Exception e) {
-            lblStatus.setText(" Could not save loans!");
+            lblStatus.setText("Could not save loans!");
         }
     }
     
     // Populate both card dropdowns
     private void populateCardDropdowns() {
-        cmbSelectCard.removeAllItems();
+        cmbSelectCard.removeAllItems(); // remove all the items for the selection box and dropdown box
         cmbEditCard.removeAllItems();
         
-        for (CreditCard card : CardsManager.listCreditCards) {
+        for (CreditCard card : CardsManager.listCreditCards) { // get all the credit cards and add it to the box
             String item = "Credit: " + card.getName() + " - " + card.getNumber();
             cmbSelectCard.addItem(item);
             cmbEditCard.addItem(item);
         }
         
-        for (DebitCard card : CardsManager.listDebitCards) {
+        for (DebitCard card : CardsManager.listDebitCards) { // get all the debit cards and add it to the box
             String item = "Debit: " + card.getName() + " - " + card.getNumber();
             cmbSelectCard.addItem(item);
             cmbEditCard.addItem(item);
@@ -439,21 +439,21 @@ public class AddEditLoan extends javax.swing.JFrame {
     private void refreshExistingLoansList() {
         String[] loanArray;
         
-        if (trackedLoans.isEmpty()) {
+        if (trackedLoans.isEmpty()) { // if the loan is empty
             loanArray = new String[]{"No loans to edit yet."};
         } else {
-            loanArray = new String[trackedLoans.size()];
-            for (int i = 0; i < trackedLoans.size(); i++) {
-                Loan loan = trackedLoans.get(i);
-                loanArray[i] = loanNames.get(i) + " - $" + format.format(loan.getMonthlyPayment()) + "/month";
+            loanArray = new String[trackedLoans.size()]; // make the array with the size of all the loans
+            for (int i = 0; i < trackedLoans.size(); i++) { // get all  the loans
+                Loan loan = trackedLoans.get(i); // get the information
+                loanArray[i] = loanNames.get(i) + " - $" + format.format(loan.getMonthlyPayment()) + "/month"; // get all the information needed to be displayed inot the array
             }
         }
         
-        lstExistingLoans.setListData(loanArray);
+        lstExistingLoans.setListData(loanArray); // and display the array onto the list
     }
-    
+    // method to enable fields
     private void setEditFieldsEnabled(boolean enabled) {
-        txtEditName.setEnabled(enabled);
+        txtEditName.setEnabled(enabled); // set each one to enabled
         txtEditAmount.setEnabled(enabled);
         txtEditRate.setEnabled(enabled);
         txtEditTerm.setEnabled(enabled);
@@ -461,8 +461,8 @@ public class AddEditLoan extends javax.swing.JFrame {
         btnSaveChanges.setEnabled(enabled);
         btnCancelEdit.setEnabled(enabled);
     }
-    
-    private void clearEditFields() {
+    // method to clear all fields
+    private void clearEditFields() { 
         txtEditName.setText("");
         txtEditAmount.setText("");
         txtEditRate.setText("");
@@ -471,19 +471,19 @@ public class AddEditLoan extends javax.swing.JFrame {
     
     
     private void btnLoanManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoanManagerActionPerformed
-        this.dispose();
+        this.dispose(); // change of screen button
         LoanManager screen = new LoanManager();
         screen.setVisible(true);
     }//GEN-LAST:event_btnLoanManagerActionPerformed
 
     private void btnAddLoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddLoanActionPerformed
         try {
-            String strName = txtLoanName.getText().trim();
+            String strName = txtLoanName.getText().trim(); // get all the inputs
             double dblBalance = Double.parseDouble(txtLoanAmount.getText());
             double dblRate = Double.parseDouble(txtInterestRate.getText());
             int intMonths = (int) Double.parseDouble(txtLoanTerm.getText());    
             
-            // Validate inputs
+            // validate inputs
             if (strName.isEmpty()) {
                 lblStatus.setText(" Please enter a loan strName!");
                 return;
@@ -499,23 +499,23 @@ public class AddEditLoan extends javax.swing.JFrame {
                 return;
             }
             
-            // Get selected card number
+            // get selected card number
             String strSelection = (String) cmbSelectCard.getSelectedItem();
             String strCardNumber = strSelection.substring(strSelection.lastIndexOf("-") + 2);
             
-            // Create and add loan
+            // create and add loan
             Loan newLoan = new Loan(dblBalance, dblRate, intMonths);
             trackedLoans.add(newLoan);
             loanNames.add(strName);
             loanCards.add(strCardNumber);
             
-            // Save to file
+            // save to file
             saveLoansToFile();
             
-            // Refresh display
+            // refresh display
             refreshExistingLoansList();
             
-            // Clear inputs
+            // clear inputs
             txtLoanName.setText("");
             txtLoanAmount.setText("");
             txtInterestRate.setText("");
@@ -524,34 +524,34 @@ public class AddEditLoan extends javax.swing.JFrame {
             lblStatus.setText("Loan added!");
             
         } catch (NumberFormatException e) {
-            lblStatus.setText(" Please enter valid numbers!");
+            lblStatus.setText("Please enter valid numbers!");
         }
     }//GEN-LAST:event_btnAddLoanActionPerformed
 
     private void btnSaveChangesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveChangesActionPerformed
-        if (intSelectedEditIndex < 0 || intSelectedEditIndex >= trackedLoans.size()) {
-            lblStatus.setText(" Please select a loan to edit!");
+        if (intSelectedEditIndex < 0 || intSelectedEditIndex >= trackedLoans.size()) { // if nothing is selected
+            lblStatus.setText("Please select a loan to edit!"); // tell them to select  a loan
             return;
         }
         
         try {
-            String strName = txtEditName.getText().trim();
+            String strName = txtEditName.getText().trim(); // get all the inputs
             double dblBalance = Double.parseDouble(txtEditAmount.getText());
             double dblRate = Double.parseDouble(txtEditRate.getText());
             int intMonths = (int) Double.parseDouble(txtEditTerm.getText());
-            
+            // validate inputs
             if (strName.isEmpty()) {
-                lblStatus.setText(" Please enter a loan strName!");
+                lblStatus.setText("Please enter a loan name!");
                 return;
             }
             
             if (dblBalance <= 0 || intMonths <= 0 || dblRate < 0) {
-                lblStatus.setText(" Please enter valid positive numbers!");
+                lblStatus.setText("Please enter valid positive numbers!");
                 return;
             }
             
             if (cmbEditCard.getSelectedItem() == null) {
-                lblStatus.setText(" Please select a card!");
+                lblStatus.setText("Please select a card!");
                 return;
             }
             
@@ -584,11 +584,11 @@ public class AddEditLoan extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSaveChangesActionPerformed
 
     private void lstExistingLoansMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lstExistingLoansMouseClicked
-        intSelectedEditIndex = lstExistingLoans.getSelectedIndex();
+        intSelectedEditIndex = lstExistingLoans.getSelectedIndex(); // get the selected index
         
         if (intSelectedEditIndex < 0 || intSelectedEditIndex >= trackedLoans.size()) {
-            return;
-        }
+            return; // if its out of bounds return
+        } 
         
         // populate edit fields
         Loan loan = trackedLoans.get(intSelectedEditIndex);
@@ -612,11 +612,11 @@ public class AddEditLoan extends javax.swing.JFrame {
     }//GEN-LAST:event_lstExistingLoansMouseClicked
 
     private void btnCancelEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelEditActionPerformed
-        clearEditFields();
-        setEditFieldsEnabled(false);
-        intSelectedEditIndex = -1;
-        lstExistingLoans.clearSelection();
-        lblStatus.setText("Edit cancelled");
+        clearEditFields(); // clear all fields
+        setEditFieldsEnabled(false); // make it so they cant input anything
+        intSelectedEditIndex = -1; // reset index
+        lstExistingLoans.clearSelection(); // clear the selection
+        lblStatus.setText("Edit cancelled"); // tell them they cancelled the edit
     }//GEN-LAST:event_btnCancelEditActionPerformed
 
     /**
