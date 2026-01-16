@@ -200,26 +200,7 @@ public class LogInScreen extends javax.swing.JFrame {
     if (Username.isEmpty()) {
         fldUsername.setText("Please enter a Username.");
 }
-    try {
-    FileWriter fw = new FileWriter("name.txt", true); 
-    BufferedWriter bufferedwriter = new BufferedWriter(fw);
-    bufferedwriter.write(Username);
-    bufferedwriter.newLine();
-    bufferedwriter.close();
-} catch (IOException e) {
-    fldUsername.setText("Error writing to file.");
-}
-
-    try {
-    FileWriter fw = new FileWriter("name.txt", true); 
-    BufferedWriter bufferedwriter = new BufferedWriter(fw);
-    bufferedwriter.write(Password);
-    bufferedwriter.newLine();
-    bufferedwriter.close();
-} catch (IOException e) {
-    fldPassword.setText("Error writing to file.");
-}
-    
+     
     boolean found = false;
     
     
