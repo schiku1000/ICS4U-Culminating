@@ -74,7 +74,7 @@ public class AddEditLoan extends javax.swing.JFrame {
         txtInterestRate = new javax.swing.JTextField();
         txtEditRate = new javax.swing.JTextField();
         btnCancelEdit = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
+        sepDivider = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -179,10 +179,10 @@ public class AddEditLoan extends javax.swing.JFrame {
             }
         });
 
-        jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
-        jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
-        jSeparator1.setToolTipText("");
-        jSeparator1.setOpaque(true);
+        sepDivider.setBackground(new java.awt.Color(0, 0, 0));
+        sepDivider.setForeground(new java.awt.Color(0, 0, 0));
+        sepDivider.setToolTipText("");
+        sepDivider.setOpaque(true);
 
         javax.swing.GroupLayout pnlBackgroundLayout = new javax.swing.GroupLayout(pnlBackground);
         pnlBackground.setLayout(pnlBackgroundLayout);
@@ -271,7 +271,7 @@ public class AddEditLoan extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(scrList, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(sepDivider, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addContainerGap())))
             .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBackgroundLayout.createSequentialGroup()
@@ -310,7 +310,7 @@ public class AddEditLoan extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addComponent(btnAddLoan)
                 .addGap(57, 57, 57)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(sepDivider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblEditHeader)
@@ -651,7 +651,6 @@ public class AddEditLoan extends javax.swing.JFrame {
     private javax.swing.JButton btnSaveChanges;
     private javax.swing.JComboBox<String> cmbEditCard;
     private javax.swing.JComboBox<String> cmbSelectCard;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblAddHeader;
     private javax.swing.JLabel lblAmountOwed;
     private javax.swing.JLabel lblEditAmountOwned;
@@ -669,6 +668,7 @@ public class AddEditLoan extends javax.swing.JFrame {
     private javax.swing.JList<String> lstExistingLoans;
     private javax.swing.JPanel pnlBackground;
     private javax.swing.JScrollPane scrList;
+    private javax.swing.JSeparator sepDivider;
     private javax.swing.JTextField txtEditAmount;
     private javax.swing.JTextField txtEditName;
     private javax.swing.JTextField txtEditRate;
