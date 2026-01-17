@@ -157,13 +157,17 @@ public class SimpliFiGoals extends JFrame {
                 String name = nameField.getText();
                 double amount = Double.parseDouble(amountField.getText());
                 String type = typeBox.getSelectedItem().toString();
+		
+		try {
+		    Goal g = new Goal(name, amount, type);
+		    manager.addGoal(g);
+		    listModel.addElement(g);
 
-                Goal g = new Goal(name, amount, type);
-                manager.addGoal(g);
-                listModel.addElement(g);
-
-                nameField.setText("");
-                amountField.setText("");
+		    nameField.setText("");
+		    amountField.setText("");
+		} catch (Exception d) {
+		    System.out.println("Make sure your inputs are valid");
+		}
             }
         });
 
