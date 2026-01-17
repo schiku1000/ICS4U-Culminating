@@ -8,10 +8,9 @@
  * @author j08a0
  */
 
+import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 
 public class LogInScreen extends javax.swing.JFrame {
@@ -191,50 +190,47 @@ public class LogInScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogInActionPerformed
-    String Username = fldUsername.getText();
-    String Password = fldPassword.getText();
     
-    if (Password.isEmpty()) {
-        fldPassword.setText("Please Enter a Password");
+        
+    String username = fldUsername.getText();
+    String password = fldPassword.getText();
+
+    File file = new File("name.txt");
+
+    if (!file.exists()) {
+        fldUsername.setText("No users registered yet");
+        return;
     }
-    if (Username.isEmpty()) {
-        fldUsername.setText("Please enter a Username.");
-}
-     
-    boolean found = false;
-    
-    
 
-try {
-    BufferedReader br = new BufferedReader(new FileReader("name.txt"));
-    String line;
+    try {
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        String line;
+        boolean found = false;
 
-    while ((line = br.readLine()) != null) {
-        if (line.equalsIgnoreCase(Username)) {
-            if (line.equalsIgnoreCase(Password)) {
+        while ((line = br.readLine()) != null) {
+            String[] parts = line.split(",");
+            if (parts[0].equals(username) && parts[1].equals(password)) {
+                found = true;
+                break;
             }
-            found = true;
-            break;
         }
-    }
-    br.close();
-    
-    
-} catch (IOException e) {
-    fldUsername.setText("Error reading file.");
-}
+        br.close();
 
-
-    if (found) {
-    fldUsername.setText("Login successful!");
-} else {
-    fldUsername.setText("UserName not found.");
-}
-
-    this.dispose();
+        if (found) {
+            fldUsername.setText("Login successful!");
+            // Open next screen here
+            this.dispose();
         CardsManager screen = new CardsManager();
         screen.setVisible(true);
-    
+            
+        } else {
+            fldUsername.setText("Invalid username or password");
+        }
+
+    } catch (IOException e) {
+        fldUsername.setText("File error");
+    }
+
     }//GEN-LAST:event_btnLogInActionPerformed
 
     private void btnShowPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowPasswordActionPerformed

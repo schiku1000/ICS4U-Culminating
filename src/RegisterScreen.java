@@ -8,6 +8,7 @@
  * @author j08a0
  */
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.BufferedReader;
@@ -155,9 +156,52 @@ public class RegisterScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+        
+        
+        
+     String username = fldUsername.getText();
+     String password = new String(fldPassword.getPassword());
+
+    if (username.isEmpty() || password.isEmpty()) {
+        fldUsername.setText("Fill in all fields");
+        return;
+    }
+
+    File file = new File("name.txt");
+
+    try {
+        // Create file if it doesn't exist
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        String line;
+
+        while ((line = br.readLine()) != null) {
+            String[] parts = line.split(",");
+            if (parts[0].equals(username)) {
+                fldUsername.setText("Username already exists");
+                br.close();
+                return;
+            }
+        }
+        br.close();
+
+        BufferedWriter bw = new BufferedWriter(new FileWriter(file, true));
+        bw.write(username + "," + password);
+        bw.newLine();
+        bw.close();
+
         this.dispose();
         LogInScreen screen = new LogInScreen();
         screen.setVisible(true);
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+
+        
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnShowPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowPasswordActionPerformed
