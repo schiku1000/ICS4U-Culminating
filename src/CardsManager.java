@@ -20,8 +20,11 @@ public class CardsManager extends javax.swing.JFrame {
     public static void writeToFile(boolean boolCredit) {
 	if (boolCredit) {
 	    try {
+		// Get the filepath for this specific user 
+		String strFilepath = UserManager.getUserFilePath("Credit Cards.txt"); 
+
 		// Clear the file, then write to it: 
-		FileWriter fwCred = new FileWriter("Credit Cards.txt");
+		FileWriter fwCred = new FileWriter(strFilepath);
 		for (int i = 0; i < CardsManager.listCreditCards.size(); i++) {
 		    fwCred.write(CardsManager.listCreditCards.get(i).toString());
 		}
@@ -32,8 +35,11 @@ public class CardsManager extends javax.swing.JFrame {
 	} else {
 	    // Now that it is removed from the list, rewrite the file without it 
 	    try {
+		// Get the filepath for this specific user 
+		String strFilepath = UserManager.getUserFilePath("Debit Cards.txt"); 
+
 		// Clear the file, then write to it: 
-		FileWriter fwDeb = new FileWriter("Debit Cards.txt");
+		FileWriter fwDeb = new FileWriter(strFilepath);
 		for (int i = 0; i < CardsManager.listDebitCards.size(); i++) {
 		    fwDeb.write(CardsManager.listDebitCards.get(i).toString());
 		}
@@ -51,11 +57,15 @@ public class CardsManager extends javax.swing.JFrame {
 	listCreditCards.clear(); 
 	listDebitCards.clear(); 
 	
+	// Get the filepath for this specific user for the credit and debit cards
+	String strFileCredit = UserManager.getUserFilePath("Credit Cards.txt"); 
+	String strFileDebit = UserManager.getUserFilePath("Debit Cards.txt"); 
+	
         // FIRST PART OF THIS METHOD: Add all the cards from the textfile into objects for the program 
         // First, I will do it for the credit cards, and then I will do it for the debit cards  
 	// Intialize a bufferedReader 
         try {
-            BufferedReader brCred = new BufferedReader(new FileReader("Credit Cards.txt"));
+            BufferedReader brCred = new BufferedReader(new FileReader(strFileCredit));
             String readCred = brCred.readLine();
             
             // Create a var which will work like a boolean 
@@ -87,7 +97,7 @@ public class CardsManager extends javax.swing.JFrame {
             brCred.close(); // close the reader
             
             // #2: Now do the same thing for the debit cards
-            BufferedReader brDeb = new BufferedReader(new FileReader("Debit Cards.txt"));
+            BufferedReader brDeb = new BufferedReader(new FileReader(strFileDebit));
             String readDeb = brDeb.readLine();
             boolRunning = true; 
 	    
@@ -184,6 +194,10 @@ public class CardsManager extends javax.swing.JFrame {
 	
 	initComponents(); // generated UI initializer
 	
+	// Find filepath 
+	String strFileCredit = UserManager.getUserFilePath("Credit Cards.txt"); 
+	String strFileDebit = UserManager.getUserFilePath("Debit Cards.txt"); 
+	
 	// First, try creating the files to hold it if they do not currently exist
         // The reason why this is here and not in the addCards() function is because of efficiency. 
         // This only has to run once per program, whereas the addCards() function will be run multiple times. 
@@ -191,16 +205,16 @@ public class CardsManager extends javax.swing.JFrame {
 	    // If the files exist, it will initialize readers for it. 
 	    // If they do not exist, it will throw an error. 
 	    // That is why it is in a try and catch block, if it errors, it will create the files! 
-	    BufferedReader br1 = new BufferedReader(new FileReader("Credit Cards.txt")); 
-	    BufferedReader br2 = new BufferedReader(new FileReader("Debit Cards.txt")); 
+	    BufferedReader br1 = new BufferedReader(new FileReader(strFileCredit)); 
+	    BufferedReader br2 = new BufferedReader(new FileReader(strFileDebit)); 
 	    
 	} catch (IOException e) { // If it fails to create a fileWritter object for either file, throw an eror 
 	    try { // Try and catch required for IOException 
-		FileWriter fwCred = new FileWriter("Credit Cards.txt");
+		FileWriter fwCred = new FileWriter(strFileCredit);
 		// close the fileWritter objects to save memory
 		fwCred.close(); 
 
-		FileWriter fwDeb = new FileWriter("Debit Cards.txt"); 
+		FileWriter fwDeb = new FileWriter(strFileDebit); 
 		// close the fileWritter objects to save memory
 		fwDeb.close(); 
 	    } catch (IOException d){}

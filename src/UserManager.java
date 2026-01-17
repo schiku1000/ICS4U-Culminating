@@ -122,8 +122,6 @@ public class UserManager {
         
         try {
             // create and immediately close three empty files for user data
-            new FileWriter(strUserDir + "creditcards.txt").close(); // Credit cards file
-            new FileWriter(strUserDir + "debitcards.txt").close(); // Debit cards file
             new FileWriter(strUserDir + "loans.txt").close(); // Loans file
             
         } catch (IOException e) {
