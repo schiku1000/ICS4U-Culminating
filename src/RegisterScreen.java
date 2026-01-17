@@ -205,7 +205,13 @@ public class RegisterScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnShowPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowPasswordActionPerformed
-        // TODO add your handling code here:
+        if (fldPassword.getEchoChar() != '\u0000') {  // If password is hidden
+            fldPassword.setEchoChar('\u0000');  // Show password (
+            btnShowPassword.setText("Hide Password");
+        } else {
+            fldPassword.setEchoChar('•');  // hide password (sets to bullets)
+            btnShowPassword.setText("Show Password");
+        }
     }//GEN-LAST:event_btnShowPasswordActionPerformed
 
     /**
