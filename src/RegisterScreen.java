@@ -164,7 +164,7 @@ public class RegisterScreen extends javax.swing.JFrame {
 
     if (username.isEmpty() || password.isEmpty()) {
         fldUsername.setText("Fill in all fields");
-        return;
+        return; 
     }
 
     File file = new File("name.txt");
