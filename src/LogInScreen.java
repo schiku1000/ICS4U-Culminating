@@ -190,47 +190,18 @@ public class LogInScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogInActionPerformed
-    
-        
-    String username = fldUsername.getText();
-    String password = fldPassword.getText();
+        String strUsername = fldUsername.getText(); // get inputs
+        String strPassword = new String(fldPassword.getText());
 
-    File file = new File("name.txt");
+        UserManager.initializeDirectories(); // initialize the directories
 
-    if (!file.exists()) {
-        fldUsername.setText("No users registered yet");
-        return;
-    }
-
-    try {
-        BufferedReader br = new BufferedReader(new FileReader(file));
-        String line;
-        boolean found = false;
-
-        while ((line = br.readLine()) != null) {
-            String[] parts = line.split(",");
-            if (parts[0].equals(username) && parts[1].equals(password)) {
-                found = true;
-                break;
-            }
-        }
-        br.close();
-
-        if (found) {
-            fldUsername.setText("Login successful!");
-            // Open next screen here
-            this.dispose();
-        CardsManager screen = new CardsManager();
-        screen.setVisible(true);
-            
+        if (UserManager.validateLogin(strUsername, strPassword)) { // if the log in is valid
+            this.dispose(); // go to next sccreen
+            CardsManager screen = new CardsManager();
+            screen.setVisible(true);
         } else {
-            fldUsername.setText("Invalid username or password");
+            fldUsername.setText("Invalid username or password"); // otherwise tell them its wrong
         }
-
-    } catch (IOException e) {
-        fldUsername.setText("File error");
-    }
-
     }//GEN-LAST:event_btnLogInActionPerformed
 
     private void btnShowPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowPasswordActionPerformed

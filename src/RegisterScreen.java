@@ -156,52 +156,25 @@ public class RegisterScreen extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-        
-        
-        
-     String username = fldUsername.getText();
-     String password = new String(fldPassword.getPassword());
+        String strUsername = fldUsername.getText(); // get inputs
+        String strPassword = new String(fldPassword.getPassword());
 
-    if (username.isEmpty() || password.isEmpty()) {
-        fldUsername.setText("Fill in all fields");
-        return; 
-    }
-
-    File file = new File("name.txt");
-
-    try {
-        // Create file if it doesn't exist
-        if (!file.exists()) {
-            file.createNewFile();
+        if (strUsername.isEmpty() || strPassword.isEmpty()) { // check that they are filled
+            fldUsername.setText("Fill in all fields");
+            return;
         }
 
-        BufferedReader br = new BufferedReader(new FileReader(file));
-        String line;
+        UserManager.initializeDirectories(); // create the directories
 
-        while ((line = br.readLine()) != null) {
-            String[] parts = line.split(",");
-            if (parts[0].equals(username)) {
-                fldUsername.setText("Username already exists");
-                br.close();
-                return;
-            }
-        }
-        br.close();
+        if (UserManager.registerUser(strUsername, strPassword)) { // check if you can create the user
+            UserManager.setCurrentUser(strUsername); // if you can use the username throughout the program
 
-        BufferedWriter bw = new BufferedWriter(new FileWriter(file, true));
-        bw.write(username + "," + password);
-        bw.newLine();
-        bw.close();
-
-        this.dispose();
-        LogInScreen screen = new LogInScreen();
-        screen.setVisible(true);
-
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-
-        
+            this.dispose(); // and switch the screen
+            CardsManager screen = new CardsManager();
+            screen.setVisible(true);
+        } else {
+            fldUsername.setText("Username already exists"); // if you can't create the user that means username already exists
+        }    
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnShowPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowPasswordActionPerformed
