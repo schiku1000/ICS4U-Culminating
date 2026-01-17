@@ -512,23 +512,24 @@ public class LoanManager extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeleteLoanActionPerformed
 
     private void btnCalculateInterestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculateInterestActionPerformed
-        try{
-        int intMonthsLeft = Integer.parseInt(lblMonths.getText());
-        intSelectedEditIndex = lstLoans.getSelectedIndex();
-        
-        if (intSelectedEditIndex < 0 || intSelectedEditIndex >= trackedLoans.size()) { // if nothing is selected
-            lblStatus.setText("Please select a loan from the list!");
-            return;
+        try {
+            int intMonthsLeft = Integer.parseInt(fldMonths.getText().trim());
+            intSelectedEditIndex = lstLoans.getSelectedIndex();
+
+            if (intSelectedEditIndex < 0 || intSelectedEditIndex >= trackedLoans.size()) { // if nothing is selected
+                lblStatus.setText("Please select a loan from the list!");
+                return;
+            }
+
+            selectedLoan = trackedLoans.get(intSelectedEditIndex); // get the loan that is selected
+           
+            double dblInterest = selectedLoan.calculateAccumulatedInterest(intMonthsLeft);  // use the recursive method to calculate accumulated interest
+
+            // format and display the result
+            lblInterestOutput.setText("Accumulated interest for " + intMonthsLeft + " months: $" + format.format(dblInterest));
         }
-        
-        selectedLoan = trackedLoans.get(intSelectedEditIndex); // get the loan that is selected
-        
-        double dblInterest = selectedLoan.calculateAccumulatedInterest(intMonthsLeft);
-        
-        lblInterestOutput.setText("The accumulated interest for " + lblMonths.getText() + " months is $" + dblInterest);
-        }
-        catch (Exception e) {
-            lblInterestOutput.setText("Please ensure you enter a valid amount of months!");
+        catch (NumberFormatException e) {
+            lblInterestOutput.setText("Please enter a valid number of months!");
         }
     }//GEN-LAST:event_btnCalculateInterestActionPerformed
 
