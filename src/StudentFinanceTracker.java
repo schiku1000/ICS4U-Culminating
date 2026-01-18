@@ -1,19 +1,20 @@
+package com.mycompany.studentfinancetracker;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.util.ArrayList;
 
-/*
- * This class represents a financial goal.
- * It is used for both short-term and long-term goals.
- */
+/* =======================
+   Goal class
+   ======================= */
 class Goal {
 
     private String name;
     private double targetAmount;
     private double savedAmount;
-    private String type; // Short-Term or Long-Term
+    private String type;
 
     public Goal(String name, double targetAmount, String type) {
         this.name = name;
@@ -41,21 +42,21 @@ class Goal {
         return g;
     }
 
+    @Override
     public String toString() {
         return name + " (" + type + ")  $" + savedAmount + "/" + targetAmount +
-                (isComplete() ? "  [Complete]" : "");
+                (isComplete() ? " [Complete]" : "");
     }
 }
 
-/*
- * This class manages all goals and handles file reading and writing.
- */
+/* =======================
+   GoalManager class
+   ======================= */
 class GoalManager {
 
-    private ArrayList<Goal> goals;
+    private ArrayList<Goal> goals = new ArrayList<>();
 
     public GoalManager() {
-        goals = new ArrayList<>();
         loadGoals();
     }
 
@@ -69,55 +70,47 @@ class GoalManager {
     }
 
     private void saveGoals() {
-        try {
-            PrintWriter pw = new PrintWriter(new FileWriter("goals.txt"));
+        try (PrintWriter pw = new PrintWriter(new FileWriter("goals.txt"))) {
             for (Goal g : goals) {
                 pw.println(g.toFileString());
             }
-            pw.close();
         } catch (IOException e) {
-            System.out.println("Error saving goals");
+            JOptionPane.showMessageDialog(null, "Error saving goals.");
         }
     }
 
     private void loadGoals() {
         File file = new File("goals.txt");
-        if (!file.exists()) {
-            return;
-        }
+        if (!file.exists()) return;
 
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = br.readLine()) != null) {
                 goals.add(Goal.fromFileString(line));
             }
-            br.close();
         } catch (IOException e) {
-            System.out.println("Error loading goals");
+            JOptionPane.showMessageDialog(null, "Error loading goals.");
         }
     }
 }
 
-/*
- * Main application with GUI
- */
-public class SimpliFiGoals extends JFrame {
+/* =======================
+   MAIN GUI CLASS
+   ======================= */
+public class StudentFinanceTracker extends JFrame {
 
     private GoalManager manager;
     private DefaultListModel<Goal> listModel;
     private JList<Goal> goalList;
-
-    public SimpliFiGoals() {
+    
+    public StudentFinanceTracker() {
 
         manager = new GoalManager();
 
-        setTitle("SimpliFi - Goals & Budgeting");
+        setTitle("Student Finance Tracker");
         setSize(450, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new BorderLayout());
+        setLocationRelativeTo(null);
 
         listModel = new DefaultListModel<>();
         goalList = new JList<>(listModel);
@@ -126,11 +119,9 @@ public class SimpliFiGoals extends JFrame {
             listModel.addElement(g);
         }
 
-        mainPanel.add(new JScrollPane(goalList), BorderLayout.CENTER);
+        add(new JScrollPane(goalList), BorderLayout.CENTER);
 
-        // Input panel
-        JPanel inputPanel = new JPanel();
-        inputPanel.setLayout(new GridLayout(4, 2));
+        JPanel inputPanel = new JPanel(new GridLayout(4, 2, 5, 5));
 
         JTextField nameField = new JTextField();
         JTextField amountField = new JTextField();
@@ -143,39 +134,47 @@ public class SimpliFiGoals extends JFrame {
 
         inputPanel.add(new JLabel("Goal Name:"));
         inputPanel.add(nameField);
-        inputPanel.add(new JLabel("Target Amount:"));
+        inputPanel.add(new JLabel("Target Amount ($):"));
         inputPanel.add(amountField);
         inputPanel.add(new JLabel("Goal Type:"));
         inputPanel.add(typeBox);
         inputPanel.add(new JLabel(""));
         inputPanel.add(addButton);
 
-        mainPanel.add(inputPanel, BorderLayout.SOUTH);
+        add(inputPanel, BorderLayout.SOUTH);
 
-        addButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String name = nameField.getText();
-                double amount = Double.parseDouble(amountField.getText());
-                String type = typeBox.getSelectedItem().toString();
-		
-		try {
-		    Goal g = new Goal(name, amount, type);
-		    manager.addGoal(g);
-		    listModel.addElement(g);
+        /* ========= ERROR HANDLING ========= */
+        addButton.addActionListener(e -> {
+            String name = nameField.getText().trim();
+            String amountText = amountField.getText().trim();
 
-		    nameField.setText("");
-		    amountField.setText("");
-		} catch (Exception d) {
-		    System.out.println("Make sure your inputs are valid");
-		}
+            if (name.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Goal name cannot be empty.");
+                return;
             }
+
+            double amount;
+            try {
+                amount = Double.parseDouble(amountText);
+                if (amount <= 0) throw new NumberFormatException();
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "Enter a valid positive number.");
+                return;
+            }
+
+            Goal g = new Goal(name, amount, typeBox.getSelectedItem().toString());
+            manager.addGoal(g);
+            listModel.addElement(g);
+
+            nameField.setText("");
+            amountField.setText("");
         });
 
-        add(mainPanel);
         setVisible(true);
     }
 
+    /* ========= MAIN METHOD ========= */
     public static void main(String[] args) {
-        new SimpliFiGoals();
+        SwingUtilities.invokeLater(() -> new StudentFinanceTracker());
     }
 }
