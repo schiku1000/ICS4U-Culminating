@@ -53,8 +53,6 @@ public class EditCard extends javax.swing.JFrame {
         lblRemove = new javax.swing.JLabel();
         txtAdd = new javax.swing.JTextField();
         txtRemove = new javax.swing.JTextField();
-        lblNewTitle = new javax.swing.JLabel();
-        txtNewBalance = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -165,13 +163,6 @@ public class EditCard extends javax.swing.JFrame {
 
         txtRemove.setBackground(new java.awt.Color(153, 153, 255));
 
-        lblNewTitle.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
-        lblNewTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblNewTitle.setText("New Balance/Limit:");
-
-        txtNewBalance.setEditable(false);
-        txtNewBalance.setBackground(new java.awt.Color(153, 153, 255));
-
         javax.swing.GroupLayout pnlBackgroundLayout = new javax.swing.GroupLayout(pnlBackground);
         pnlBackground.setLayout(pnlBackgroundLayout);
         pnlBackgroundLayout.setHorizontalGroup(
@@ -188,32 +179,13 @@ public class EditCard extends javax.swing.JFrame {
                     .addComponent(lblName))
                 .addGap(18, 18, 18)
                 .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlBackgroundLayout.createSequentialGroup()
-                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCardType, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())
-                    .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                        .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(128, 128, 128))
-                    .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                        .addComponent(txtCVV, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnDelete)
-                        .addGap(97, 97, 97))
                     .addGroup(pnlBackgroundLayout.createSequentialGroup()
                         .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtBank, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBackgroundLayout.createSequentialGroup()
-                                .addComponent(lblNewTitle)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNewBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(36, 36, 36))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBackgroundLayout.createSequentialGroup()
                                 .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(lblCurrent)
@@ -230,7 +202,20 @@ public class EditCard extends javax.swing.JFrame {
                                     .addGroup(pnlBackgroundLayout.createSequentialGroup()
                                         .addGap(18, 18, 18)
                                         .addComponent(txtBalance, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(19, 19, 19))))))
+                                .addGap(19, 19, 19))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBackgroundLayout.createSequentialGroup()
+                                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(31, 31, 31))
+                                    .addComponent(btnDelete))
+                                .addGap(98, 98, 98))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlBackgroundLayout.createSequentialGroup()
+                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCardType, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCVV, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
             .addGroup(pnlBackgroundLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(lblDetailHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -252,7 +237,7 @@ public class EditCard extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addComponent(lblTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pnlBackgroundLayout.createSequentialGroup()
                         .addComponent(lblDetailHeader)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -274,12 +259,7 @@ public class EditCard extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblDate)
-                            .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblCVV)
-                            .addComponent(txtCVV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(pnlBackgroundLayout.createSequentialGroup()
                         .addComponent(lblBalanceEdit)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -296,15 +276,15 @@ public class EditCard extends javax.swing.JFrame {
                                 .addComponent(lblRemove)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtRemove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                        .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblNewTitle)
-                            .addComponent(txtNewBalance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(32, 32, 32)
                         .addComponent(btnSave)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnDelete)
-                        .addGap(77, 77, 77)))
+                        .addComponent(btnDelete)))
+                .addGap(18, 18, 18)
+                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCVV)
+                    .addComponent(txtCVV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnBack)
                 .addGap(18, 18, 18)
                 .addComponent(lblDisplayOut)
@@ -336,7 +316,7 @@ public class EditCard extends javax.swing.JFrame {
 	    // If it errors, that means the inputs weren't fully numbers
 	    try {
 		// Declare and initialize variables
-		// The reason why I am setting them as 0 initially is because I want to diffrienciate between blank and not blank inputs
+		// The reason why I am setting them as 0 initially is because I want to differentiate between blank and not blank inputs
 		double dblAdd = 0, dblRemove = 0; 
 		
 		// Use if statements to know whether they are blank or not 
@@ -350,27 +330,29 @@ public class EditCard extends javax.swing.JFrame {
 		}
 		
 		// Since all the values are verified, we can now edit the balance/limit depending on whether it is a credit or debit card.
-		// First, find the new balance
-		double dblNew = Double.parseDouble(CardsManager.listCreditCards.get(bytCard).getLimit()) + dblAdd - dblRemove;
-		
 		// Use an if statement to verify whether it is a debit or credit card to know which list to edit, and then change the GUI 
 		if (boolCredit) {
+		    // First, find the new balance
+		    double dblNew =  Double.parseDouble(CardsManager.listCreditCards.get(bytCard).getLimit()) + dblAdd - dblRemove;
+		    
 		    // Change the balance using the given values
 		    CardsManager.listCreditCards.get(bytCard).setLimit(df.format(dblNew));
 		    
 		    // Set the text in the GUI 
-		    txtNewBalance.setText("$" + CardsManager.listCreditCards.get(bytCard).getLimit());
+		    txtBalance.setText("$" + CardsManager.listCreditCards.get(bytCard).getLimit());
 		} else {
+		    // First, find the new balance
+		    double dblNew =  Double.parseDouble(CardsManager.listDebitCards.get(bytCard).getBalance()) + dblAdd - dblRemove;
+		    
 		    // Change the balance using the given values
 		    CardsManager.listDebitCards.get(bytCard).setLimit(df.format(dblNew));
 		    
 		    // Set the text in the GUI 
-		    txtNewBalance.setText("$" + CardsManager.listDebitCards.get(bytCard).getBalance());
+		    txtBalance.setText("$" + CardsManager.listDebitCards.get(bytCard).getBalance());
 		}
 		
 		// Finally, clear all the textspace other than the new balance, and set a message that the new balance/limit was created. 
 		lblDisplayOut.setText("Changes Saved!");
-		txtBalance.setText("");
 		txtAdd.setText("");
 		txtRemove.setText(""); 
 		
@@ -472,7 +454,6 @@ public class EditCard extends javax.swing.JFrame {
     private javax.swing.JLabel lblDetailHeader;
     private javax.swing.JLabel lblDisplayOut;
     private javax.swing.JLabel lblName;
-    private javax.swing.JLabel lblNewTitle;
     private javax.swing.JLabel lblNumber;
     private javax.swing.JLabel lblRemove;
     private javax.swing.JLabel lblTitle;
@@ -485,7 +466,6 @@ public class EditCard extends javax.swing.JFrame {
     javax.swing.JTextField txtCardType;
     javax.swing.JTextField txtDate;
     javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtNewBalance;
     javax.swing.JTextField txtNumber;
     private javax.swing.JTextField txtRemove;
     // End of variables declaration//GEN-END:variables
