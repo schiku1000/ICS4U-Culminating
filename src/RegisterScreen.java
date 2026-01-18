@@ -44,6 +44,7 @@ public class RegisterScreen extends javax.swing.JFrame {
         fldUsername = new javax.swing.JTextField();
         btnShowPassword = new javax.swing.JButton();
         fldPassword = new javax.swing.JPasswordField();
+        lblStatus = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,15 +84,16 @@ public class RegisterScreen extends javax.swing.JFrame {
             }
         });
 
+        lblStatus.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
+        lblStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(372, 372, 372)
-                        .addComponent(lblTitle))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(60, 60, 60)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -105,8 +107,11 @@ public class RegisterScreen extends javax.swing.JFrame {
                         .addComponent(btnShowPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(348, 348, 348)
-                        .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(174, Short.MAX_VALUE))
+                        .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 862, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(42, 42, 42)
@@ -129,7 +134,9 @@ public class RegisterScreen extends javax.swing.JFrame {
                     .addComponent(fldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42)
                 .addComponent(btnRegister)
-                .addContainerGap(202, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(77, 77, 77))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(76, 76, 76)
@@ -141,9 +148,7 @@ public class RegisterScreen extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,7 +165,7 @@ public class RegisterScreen extends javax.swing.JFrame {
         String strPassword = new String(fldPassword.getPassword());
 
         if (strUsername.isEmpty() || strPassword.isEmpty()) { // check that they are filled
-            fldUsername.setText("Fill in all fields");
+            lblStatus.setText("Fill in all fields");
             return;
         }
 
@@ -173,7 +178,7 @@ public class RegisterScreen extends javax.swing.JFrame {
             CardsManager screen = new CardsManager();
             screen.setVisible(true);
         } else {
-            fldUsername.setText("Username already exists"); // if you can't create the user that means username already exists
+            lblStatus.setText("Username already exists"); // if you can't create the user that means username already exists
         }    
     }//GEN-LAST:event_btnRegisterActionPerformed
 
@@ -220,6 +225,7 @@ public class RegisterScreen extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblRegister;
+    private javax.swing.JLabel lblStatus;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblUsername;
     // End of variables declaration//GEN-END:variables

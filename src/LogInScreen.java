@@ -44,6 +44,7 @@ public class LogInScreen extends javax.swing.JFrame {
         btnLogIn = new javax.swing.JButton();
         btnShowPassword = new javax.swing.JButton();
         fldPassword = new javax.swing.JPasswordField();
+        lblStatus = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,12 +103,15 @@ public class LogInScreen extends javax.swing.JFrame {
             }
         });
 
+        lblStatus.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
+        lblStatus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(lblHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 866, Short.MAX_VALUE)
+                .addComponent(lblHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 867, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -131,6 +135,9 @@ public class LogInScreen extends javax.swing.JFrame {
                         .addGap(372, 372, 372)
                         .addComponent(lblTitle)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 862, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(42, 42, 42)
@@ -157,7 +164,9 @@ public class LogInScreen extends javax.swing.JFrame {
                 .addComponent(lblHeader)
                 .addGap(18, 18, 18)
                 .addComponent(btnRegister)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(76, 76, 76)
@@ -169,9 +178,7 @@ public class LogInScreen extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,7 +207,7 @@ public class LogInScreen extends javax.swing.JFrame {
             CardsManager screen = new CardsManager();
             screen.setVisible(true);
         } else {
-            fldUsername.setText("Invalid username or password"); // otherwise tell them its wrong
+            lblStatus.setText("Invalid username or password"); // otherwise tell them its wrong
         }
     }//GEN-LAST:event_btnLogInActionPerformed
 
@@ -253,6 +260,7 @@ public class LogInScreen extends javax.swing.JFrame {
     private javax.swing.JLabel lblHeader;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblRegister;
+    private javax.swing.JLabel lblStatus;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JLabel lblUsername;
     // End of variables declaration//GEN-END:variables
