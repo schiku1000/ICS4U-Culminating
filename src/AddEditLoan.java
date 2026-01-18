@@ -450,7 +450,7 @@ public class AddEditLoan extends javax.swing.JFrame {
             loanArray = new String[trackedLoans.size()]; // make the array with the size of all the loans
             for (int i = 0; i < trackedLoans.size(); i++) { // get all  the loans
                 Loan loan = trackedLoans.get(i); // get the information
-                loanArray[i] = loanNames.get(i) + " - $" + format.format(loan.getMonthlyPayment()) + "/month"; // get all the information needed to be displayed inot the array
+                loanArray[i] = loanNames.get(i) + " - Balance: $" + format.format(loan.getRemainingBalance()) + " | $" + format.format(loan.getMonthlyPayment()) + "/month";
             }
         }
         

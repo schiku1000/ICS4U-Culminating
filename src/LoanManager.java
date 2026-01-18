@@ -359,6 +359,7 @@ public class LoanManager extends javax.swing.JFrame {
             br.close();
 
             // save the loans that still have details to the file (deletes loans that dont have a card anymore)
+            bubbleSortLoansByBalance(); // sort loans by balance after loading
             saveLoansToFile();
 
         } catch (Exception e) {}
@@ -372,7 +373,8 @@ public class LoanManager extends javax.swing.JFrame {
             loanArray = new String[trackedLoans.size()]; // make the array the size of how many loans we have in the list
             for (int i = 0; i < trackedLoans.size(); i++) { // get all the relevant information into the loan array as a string
                 Loan loan = trackedLoans.get(i);
-                loanArray[i] = loanNames.get(i) + " - $" + format.format(loan.getMonthlyPayment()) + "/month (" + loan.getTermMonths() + " months left)";            }
+                loanArray[i] = loanNames.get(i) + " - Balance: $" + format.format(loan.getRemainingBalance()) +  " | Payment: $" + format.format(loan.getMonthlyPayment()) + "/month (" + loan.getTermMonths() + " months left)";            
+            }
         }
         
         lstLoans.setListData(loanArray); // and set the array into the lst loans so users can select
@@ -387,19 +389,21 @@ public class LoanManager extends javax.swing.JFrame {
     }
     // method to find card by number
     private Card findCardByNumber(String strCardNumber) {
-        for (CreditCard card : CardsManager.listCreditCards) { // for all cards in the list of credit cards
-            if (card.getNumber().equals(strCardNumber)) { // if a number matches
-                return card; // return the card
+     // linear search through credit cards list
+        for (int i = 0; i < CardsManager.listCreditCards.size(); i++) {
+            if (CardsManager.listCreditCards.get(i).getNumber().equals(strCardNumber)) {
+                return CardsManager.listCreditCards.get(i); // return card found
             }
         }
-        
-        for (DebitCard card : CardsManager.listDebitCards) { // same thing for the debit card but in the list of debit cards
-            if (card.getNumber().equals(strCardNumber)) {
-                return card;
+
+        // linear search through debit cards list
+        for (int i = 0; i < CardsManager.listDebitCards.size(); i++) {
+            if (CardsManager.listDebitCards.get(i).getNumber().equals(strCardNumber)) {
+                return CardsManager.listDebitCards.get(i); // return card found
             }
         }
-        
-        return null; // return null if nothing is found
+
+        return null; // card not found after searching all lists
     }
     // method to save loans
     private void saveLoansToFile() {
@@ -422,6 +426,36 @@ public class LoanManager extends javax.swing.JFrame {
         }
     }
     
+    private void bubbleSortLoansByBalance() {
+        int n = trackedLoans.size();
+
+        // outer loop controls number of passes through the array
+        for (int i = 0; i < n - 1; i++) {
+            // inner loop performs comparisons and swaps
+            // after each pass the largest element goes to correct position
+            for (int j = 0; j < n - i - 1; j++) {
+                // compare adjacent loans by their remaining balance
+                if (trackedLoans.get(j).getRemainingBalance() > trackedLoans.get(j + 1).getRemainingBalance()) {
+                    // swap loans in all three parallel arrays to keep them synchronized
+
+                    // swap in trackedLoans
+                    Loan tempLoan = trackedLoans.get(j);
+                    trackedLoans.set(j, trackedLoans.get(j + 1));
+                    trackedLoans.set(j + 1, tempLoan);
+
+                    // swap in loanNames
+                    String tempName = loanNames.get(j);
+                    loanNames.set(j, loanNames.get(j + 1));
+                    loanNames.set(j + 1, tempName);
+
+                    // swap in loanCards
+                    String tempCard = loanCards.get(j);
+                    loanCards.set(j, loanCards.get(j + 1));
+                    loanCards.set(j + 1, tempCard);
+                }
+            }
+        }
+    }
     
     private void btnCardsManagerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCardsManagerActionPerformed
         this.dispose(); // switch screens
