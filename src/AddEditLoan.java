@@ -1,5 +1,9 @@
+import java.io.BufferedReader;
 import java.util.ArrayList; // import everything needed
 import java.text.DecimalFormat;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 
 public class AddEditLoan extends javax.swing.JFrame {
     
@@ -20,12 +24,13 @@ public class AddEditLoan extends javax.swing.JFrame {
         loanNames = new ArrayList<>();
         loanCards = new ArrayList<>();
        
-        try { // and create the file
-            java.io.File file = new java.io.File("Loans.txt");
+        try {
+            String strLoansPath = UserManager.getUserFilePath("loans.txt"); // get the file path  for each user
+            File file = new File(strLoansPath); 
             if (!file.exists()) {
                 file.createNewFile();
             }
-        } catch (Exception e) {} // ignore if no file
+        } catch (Exception e) {}
         
         // call all helper functions
         populateCardDropdowns();
@@ -373,10 +378,9 @@ public class AddEditLoan extends javax.swing.JFrame {
         loanCards.clear();
         
         try {
-            java.io.BufferedReader br = new java.io.BufferedReader( // read the file
-                new java.io.FileReader("Loans.txt")
-            );
-            String strLine; 
+            String strLoansPath = UserManager.getUserFilePath("loans.txt");
+            BufferedReader br = new BufferedReader(new FileReader(strLoansPath));
+            String strLine;
             
             while ((strLine = br.readLine()) != null) { // read all the data and store as variables
                 String strName = strLine;
@@ -400,7 +404,8 @@ public class AddEditLoan extends javax.swing.JFrame {
     // save all loans to file
     private void saveLoansToFile() {
         try {
-            java.io.FileWriter fw = new java.io.FileWriter("Loans.txt");
+            String strLoansPath = UserManager.getUserFilePath("loans.txt"); 
+            FileWriter fw = new FileWriter(strLoansPath);
             
             for (int i = 0; i < trackedLoans.size(); i++) { // for all the tracked loans
                 Loan loan = trackedLoans.get(i); // get the loan

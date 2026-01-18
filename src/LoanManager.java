@@ -10,6 +10,10 @@
 
 import java.util.ArrayList; // import all necessary libraries
 import java.text.DecimalFormat;
+import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
 public class LoanManager extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(LoanManager.class.getName());
@@ -30,8 +34,9 @@ public class LoanManager extends javax.swing.JFrame {
         initComponents();
         
 
-        try { // create the loan file if it doesnt exist
-            java.io.File file = new java.io.File("Loans.txt");
+        try {
+            String strLoansPath = UserManager.getUserFilePath("loans.txt"); 
+            File file = new File(strLoansPath); 
             if (!file.exists()) {
                 file.createNewFile();
             }
@@ -328,7 +333,8 @@ public class LoanManager extends javax.swing.JFrame {
         loanCards.clear();
 
         try {
-            java.io.BufferedReader br = new java.io.BufferedReader(new java.io.FileReader("Loans.txt"));
+            String strLoansPath = UserManager.getUserFilePath("loans.txt"); 
+            BufferedReader br = new BufferedReader(new FileReader(strLoansPath)); 
             String strLine; 
 
             while ((strLine = br.readLine()) != null) { // read all the data
@@ -398,7 +404,8 @@ public class LoanManager extends javax.swing.JFrame {
     // method to save loans
     private void saveLoansToFile() {
         try {
-            java.io.FileWriter fw = new java.io.FileWriter("Loans.txt"); // write to Loans.txt
+            String strLoansPath = UserManager.getUserFilePath("loans.txt"); // write to loans.txt of each user
+            FileWriter fw = new FileWriter(strLoansPath); 
             
             for (int i = 0; i < trackedLoans.size(); i++) { // for all the loans 
                 Loan loan = trackedLoans.get(i); // get all the information and write it
