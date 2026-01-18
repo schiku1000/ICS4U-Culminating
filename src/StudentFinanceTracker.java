@@ -1,4 +1,4 @@
-package com.mycompany.studentfinancetracker;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -102,7 +102,7 @@ public class StudentFinanceTracker extends JFrame {
     private GoalManager manager;
     private DefaultListModel<Goal> listModel;
     private JList<Goal> goalList;
-    
+
     public StudentFinanceTracker() {
 
         manager = new GoalManager();
