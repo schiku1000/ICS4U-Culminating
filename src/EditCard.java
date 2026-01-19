@@ -138,7 +138,7 @@ public class EditCard extends javax.swing.JFrame {
 
         lblDetailHeader.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 24)); // NOI18N
         lblDetailHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblDetailHeader.setText("Card Details:");
+        lblDetailHeader.setText("Card Details (Not Editable):");
 
         lblBalanceEdit.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 24)); // NOI18N
         lblBalanceEdit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
