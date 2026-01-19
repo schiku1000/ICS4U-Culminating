@@ -1,6 +1,7 @@
+package com.mycompany.studentfinancetrack;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.*;  
 import java.io.*;
 import java.util.ArrayList;
 
