@@ -242,6 +242,7 @@ public class CardsManager extends javax.swing.JFrame {
         lblDebitTitle = new javax.swing.JLabel();
         lblDisplayError = new javax.swing.JLabel();
         btnLoans = new javax.swing.JButton();
+        btnGoals = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -335,6 +336,15 @@ public class CardsManager extends javax.swing.JFrame {
             }
         });
 
+        btnGoals.setBackground(new java.awt.Color(153, 153, 255));
+        btnGoals.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 14)); // NOI18N
+        btnGoals.setText("Check Goals");
+        btnGoals.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGoalsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlBackgroundLayout = new javax.swing.GroupLayout(pnlBackground);
         pnlBackground.setLayout(pnlBackgroundLayout);
         pnlBackgroundLayout.setHorizontalGroup(
@@ -361,15 +371,19 @@ public class CardsManager extends javax.swing.JFrame {
                             .addComponent(btnDebit1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblDebitTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(pnlBackgroundLayout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(btnLoans, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(36, 238, Short.MAX_VALUE)
                         .addComponent(btnDebit3, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(100, 100, 100))
             .addGroup(pnlBackgroundLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(lblDisplayError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(pnlBackgroundLayout.createSequentialGroup()
+                .addGap(263, 263, 263)
+                .addComponent(btnLoans, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(btnGoals, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlBackgroundLayout.setVerticalGroup(
             pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -387,7 +401,7 @@ public class CardsManager extends javax.swing.JFrame {
                 .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCreditTitle)
                     .addComponent(lblDebitTitle))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCredit1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDebit1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -402,7 +416,9 @@ public class CardsManager extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(lblDisplayError)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnLoans)
+                .addGroup(pnlBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnLoans)
+                    .addComponent(btnGoals))
                 .addGap(12, 12, 12))
         );
 
@@ -579,6 +595,12 @@ public class CardsManager extends javax.swing.JFrame {
         screen.setVisible(true); 
     }//GEN-LAST:event_btnLoansActionPerformed
 
+    private void btnGoalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoalsActionPerformed
+        this.dispose();
+        GoalManager screen = new GoalManager();
+        screen.setVisible(true);
+    }//GEN-LAST:event_btnGoalsActionPerformed
+
     public static void main(String args[]) {
 	/* Set the Nimbus look and feel */
 	//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -609,6 +631,7 @@ public class CardsManager extends javax.swing.JFrame {
     private javax.swing.JButton btnDebit1;
     private javax.swing.JButton btnDebit2;
     private javax.swing.JButton btnDebit3;
+    private javax.swing.JButton btnGoals;
     private javax.swing.JButton btnLoans;
     private javax.swing.JLabel lblCreditTitle;
     private javax.swing.JLabel lblDebitTitle;

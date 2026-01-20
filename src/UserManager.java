@@ -123,6 +123,7 @@ public class UserManager {
         try {
             // create and immediately close three empty files for user data
             new FileWriter(strUserDir + "loans.txt").close(); // Loans file
+            new FileWriter(strUserDir + "goals.txt").close(); // Goals file
             
         } catch (IOException e) {
             e.printStackTrace(); // print error if file creation fails

@@ -37,6 +37,9 @@ public class GoalManager extends JFrame {
 
         static GoalItem fromFileString(String line) {
             String[] parts = line.split("\\|");
+            if (parts.length < 3) {
+                throw new IllegalArgumentException("Invalid goal format: " + line);
+            }
             return new GoalItem(
                     parts[0],
                     Double.parseDouble(parts[1]),
@@ -56,7 +59,7 @@ public class GoalManager extends JFrame {
     private void initComponents() {
 
         setTitle("Goals Manager");
-        setSize(650, 620);
+        setSize(650, 650);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
@@ -127,11 +130,22 @@ public class GoalManager extends JFrame {
         lblStatus.setForeground(Color.WHITE);
         lblStatus.setBounds(50, 520, 400, 20);
         add(lblStatus);
+        
+        JButton btnCardsManager = new JButton("Go to Cards Manager");
+        btnCardsManager.setBounds(200, 560, 150, 30);
+        add(btnCardsManager);
 
         // ---------- ACTIONS ----------
         btnAddGoal.addActionListener(e -> addGoal());
         btnViewDetails.addActionListener(e -> viewGoalDetails());
         btnDeleteGoal.addActionListener(e -> deleteGoal());
+        
+        btnCardsManager.addActionListener(e -> {
+            this.dispose();
+            try {
+                new CardsManager().setVisible(true);
+            } catch (Exception ex) {}
+        });
     }
 
     // ---------------- LOGIC ----------------
@@ -143,7 +157,6 @@ public class GoalManager extends JFrame {
     }
 
     private void addGoal() {
-
         JTextField fldDescription = new JTextField();
         JTextField fldAmount = new JTextField();
         JComboBox<String> cboType = new JComboBox<>(
@@ -198,7 +211,7 @@ public class GoalManager extends JFrame {
 
         lblGoalDetails.setText(
                 "<html>• " + g.description +
-                "<br>Target Amount: $" + g.targetAmount +
+                "<br>Target Amount: $" + String.format("%.2f", g.targetAmount) +
                 "<br>Goal Type: " + g.goalType + "</html>"
         );
 
@@ -223,31 +236,58 @@ public class GoalManager extends JFrame {
 
     // ---------------- FILE HANDLING ----------------
     private void saveGoals() {
-        try (PrintWriter pw = new PrintWriter(new FileWriter("goals.txt"))) {
+        try {
+            String goalsPath = UserManager.getUserFilePath("goals.txt");
+            PrintWriter pw = new PrintWriter(new FileWriter(goalsPath));
+            
             for (GoalItem g : goals) {
                 pw.println(g.toFileString());
             }
+            pw.close();
         } catch (IOException e) {
             lblStatus.setText("Error saving goals.");
         }
     }
 
     private void loadGoals() {
-        File file = new File("goals.txt");
-        if (!file.exists()) return;
-
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                goals.add(GoalItem.fromFileString(line));
+        try {
+            String goalsPath = UserManager.getUserFilePath("goals.txt");
+            File file = new File(goalsPath);
+            
+            if (!file.exists()) {
+                file.createNewFile();
+                return;
             }
+
+            goals.clear();
+            
+            try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+                String line;
+                while ((line = br.readLine()) != null) {
+                    line = line.trim();
+                    if (line.isEmpty()) continue;
+                    
+                    try {
+                        GoalItem goal = GoalItem.fromFileString(line);
+                        goals.add(goal);
+                    } catch (Exception e) {
+                        System.err.println("Skipping invalid goal line: " + line);
+                    }
+                }
+            }
+            
         } catch (IOException e) {
             lblStatus.setText("Error loading goals.");
         }
     }
-
+    
     // ---------------- MAIN ----------------
     public static void main(String[] args) {
+        File userDir = new File(UserManager.getUserDirectory());
+        if (!userDir.exists()) {
+            userDir.mkdirs();
+        }
+        
         SwingUtilities.invokeLater(() -> new GoalManager().setVisible(true));
     }
 }
