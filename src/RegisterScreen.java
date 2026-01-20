@@ -168,6 +168,10 @@ public class RegisterScreen extends javax.swing.JFrame {
             lblStatus.setText("Fill in all fields");
             return;
         }
+        if (!isStrongPassword(strPassword)) {
+            lblStatus.setText("Password must be: 8+ chars, uppercase, lowercase, number, special char");
+            return;
+        }
 
         UserManager.initializeDirectories(); // create the directories
 
@@ -192,6 +196,34 @@ public class RegisterScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnShowPasswordActionPerformed
 
+    private boolean isStrongPassword(String password) {
+        // minimum 8 characters
+        if (password.length() < 8) {
+            return false;
+        }
+
+        // check for at least one uppercase letter
+        if (!password.matches(".*[A-Z].*")) {
+            return false;
+        }
+
+        // check for at least one lowercase letter
+        if (!password.matches(".*[a-z].*")) {
+            return false;
+        }
+
+        // check for at least one digit
+        if (!password.matches(".*\\d.*")) {
+            return false;
+        }
+
+        // check for at least one special character
+        if (!password.matches(".*[!@#$%^&*()\\-_=+\\\\|\\[{\\]};:'\",<.>/?].*")) {
+            return false;
+        }
+
+        return true;
+    }
     /**
      * @param args the command line arguments
      */
